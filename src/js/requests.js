@@ -10,7 +10,19 @@ export default class filmApiService {
     
     return response.data;
   }
+  
 
-
-}
+  async getSearchKeyword(language, query, page, include_adult, region, year, primary_release_year) {
+  
+    try {
+      const searchUrl = `${this.#BASE_URL}/search/movie?api_key=${this.#API_KEY}&language=en-US&query=${query}&page=1&include_adult=false}`;
+      const response = await axios.get(searchUrl);
+      
+      return await response.data;
+    } 
+    catch (err) {
+        throw new Error(err.message);
+    };  
+  };
+};
 
