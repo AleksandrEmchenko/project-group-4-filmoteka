@@ -25,14 +25,3 @@ export default class filmApiService {
         throw new Error(err.message);
     };  
   };
-
-
-
-
-  async getTrendingMovie(page=1, timeWindow='week') {
-    const trendUrl = `${this.#BASE_URL}/trending/movie/${timeWindow}?api_key=${this.#API_KEY}&page=${page}`;
-    const response = await axios.get(trendUrl);
-    return response.data;
-  }
-}
-
