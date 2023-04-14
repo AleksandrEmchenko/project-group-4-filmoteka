@@ -1,0 +1,60 @@
+.footer {
+  background-color: #f7f7f7;
+  color: var(--textColorFooter);
+  font-size: 14px;
+  line-height: 1.1428;
+}
+.footer .container {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 0px;
+  @include tablet {
+    height: 77px;
+    font-size: 16px;
+    line-height: 1.1875;
+  }
+}
+.goit {
+  margin-top: 12px;
+  display: flex;
+  align-items: flex-end;
+
+  @include tablet {
+    margin-top: 0;
+    display: inline-flex;
+  }
+}
+.footer-icon {
+  fill: #b92f2c;
+  margin: 0 5px;
+}
+.footer-icon:hover {
+  animation-name: changeColor;
+  animation-duration: 2000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.team-link {
+  color: var(--textColorFooter);
+  text-decoration: underline;
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.team-link:hover,
+.team-link:focus {
+  color: #b92f2c;
+}
+@keyframes changeColor {
+  0% {
+    fill: blue;
+    transform: scale(1);
+  }
+  100% {
+    fill: yellow;
+    transform: scale(1.5) translateX(8%) translateY(8%);
+  }
+}
