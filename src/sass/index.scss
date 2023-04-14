@@ -1,6 +1,9 @@
-@import './common';
-@import './variables';
-@import './reset';
+@import './utils/variables';
+@import './utils/mixins';
+
+@import './base/container';
+@import './base/common';
+@import './base/reset';
 
 @import './components/loaderSpinner';
 @import './components/members-modal';
