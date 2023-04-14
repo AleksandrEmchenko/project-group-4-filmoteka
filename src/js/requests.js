@@ -25,7 +25,7 @@ export default class filmApiService {
         throw new Error(err.message);
     };  
   };
-};
+
 
 
 
