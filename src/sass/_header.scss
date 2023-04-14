@@ -1,0 +1,296 @@
+.header {
+  max-width: 100%;
+  height: 460px;
+
+  background: url(../images/header-mob.jpg);
+
+  @include pixel-ratio-x2 {
+    background-image: url(../images/header-mob@2x.jpg);
+  }
+  @include pixel-ratio-x3 {
+    background-image: url(../images/header-mob@3x.jpg);
+  }
+
+  border-radius: 10px;
+  background-color: var(--secondaryTextColor);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-height: 222px;
+
+    background: url(../images/header-tab.jpg);
+
+    @include pixel-ratio-x2 {
+      background-image: url(../images/header-tab@2x.jpg);
+    }
+    @include pixel-ratio-x3 {
+      background-image: url(../images/header-tab@3x.jpg);
+    }
+
+    border-radius: 15px;
+    background-size: 704px 222px;
+  }
+
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+
+    max-height: 316px;
+
+    background: url(../images/header.jpg);
+
+    @include pixel-ratio-x2 {
+      background-image: url(../images/header@2x.jpg);
+    }
+    @include pixel-ratio-x3 {
+      background-image: url(../images/header@3x.jpg);
+    }
+
+    border-radius: 15px;
+    background-size: 1216px 316px;
+  }
+}
+
+.header-nav {
+  padding-left: 14px;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+
+  @include tablet {
+    padding-left: 16px;
+    padding-top: 16px;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  @include desktop {
+    padding-left: 32px;
+    gap: 8px;
+  }
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 8px;
+  padding: 10px;
+
+  width: 252px;
+  height: 34px;
+
+  background-color: var(--inverseMainColor);
+  border-radius: 100px;
+
+  @include tablet {
+    justify-content: space-between;
+
+    margin-top: 0px;
+    padding-top: 11px;
+    padding-right: 0;
+
+    width: 165px;
+    height: 38px;
+  }
+
+  @include desktop {
+    width: 187px;
+    height: 42px;
+  }
+}
+
+.search-input {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  padding: 10px 14px;
+
+  width: 205px;
+
+  color: var(--mainColor);
+  border: none;
+  border-radius: 100px;
+
+  @include tablet {
+    font-size: 14px;
+    line-height: 16px;
+
+    width: 123px;
+    height: 38px;
+  }
+
+  @include desktop {
+    padding: 13px 16px;
+    width: 145px;
+  }
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input:focus + .icon-search {
+  stroke: rgb(108, 112, 110);
+}
+
+.icon-search {
+  margin-right: 10px;
+
+  width: 14px;
+  height: 14px;
+
+  stroke: var(--mainColor);
+  fill: transparent;
+
+  @include tablet {
+    margin-right: 16px;
+
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.pages-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.page-button {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  text-align: center;
+
+  background-color: var(--inverseMainColor);
+  color: var(--mainColor);
+
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+}
+
+.home-button {
+  padding: 10px 26px;
+  width: 87px;
+  height: 34px;
+
+  &:hover {
+    box-shadow: 0px 0px 35px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  @include tablet {
+    padding: 12px 24px;
+    width: 83px;
+    height: 38px;
+  }
+  @include desktop {
+    padding: 14px 32px;
+    width: 99px;
+    height: 42px;
+  }
+}
+
+.library-button {
+  padding: 10px 22px;
+  width: 113px;
+  height: 34px;
+
+  &:hover {
+    box-shadow: 0px 0px 35px 0px rgba(0, 0, 0, 0.75);
+  }
+  @include tablet {
+    padding: 12px 20px;
+    width: 109px;
+    height: 38px;
+  }
+  @include desktop {
+    padding: 14px 24px;
+    width: 117px;
+    height: 42px;
+  }
+}
+
+.page-button.current {
+  background-color: var(--mainColor);
+  color: var(--inverseMainColor);
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.icon-film {
+  display: block;
+  width: 32px;
+  height: 32px;
+  stroke: var(--inverseMainColor);
+  fill: transparent;
+
+  @include tablet {
+    width: 40px;
+    height: 40px;
+  }
+  @include desktop {
+    width: 59px;
+    height: 59px;
+  }
+}
+
+.filmoteka {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 38px;
+  color: var(--inverseMainColor);
+
+  @include tablet {
+    font-size: 40px;
+    line-height: 47px;
+  }
+  @include desktop {
+    font-size: 64px;
+    line-height: 75px;
+    -webkit-text-stroke: 1px var(--mainColor);
+  }
+}
+
+.logo-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 312px;
+  padding-bottom: 20px;
+
+  @include tablet {
+    margin-top: 105px;
+    margin-bottom: 16px;
+    padding-left: 16px;
+  }
+  @include desktop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+
+    margin-top: 151px;
+    margin-bottom: 32px;
+    padding-left: 32px;
+  }
+}

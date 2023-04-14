@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/sass/index.scss" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <header class="header-library">
+          <div class="header-nav">
+            <div class="search">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                class="search-input"
+                placeholder="Movie search"
+              />
+              <svg class="icon-search">
+                <use href="/src/images/icons.svg#icon-search"></use>
+              </svg>
+            </div>
+            <div class="pages-btn">
+              <a href="/src/index.html"
+                ><button type="button" class="page-button home-button">
+                  Home
+                </button></a
+              >
+              <a href="/src/partials/my_library.html"
+                ><button
+                  type="button"
+                  class="page-button library-button current"
+                >
+                  My library
+                </button></a
+              >
+            </div>
+          </div>
+          <a href="/src/index.html" class="logo-link-library">
+            <svg class="icon-film">
+              <use href="/src/images/icons.svg#icon-film"></use>
+            </svg>
+            <span class="filmoteka">Filmoteka</span>
+          </a>
+          <div class="add-btn">
+            <button type="button" class="page-button watched-button active">
+              Watched
+            </button>
+            <button type="button" class="page-button queue-button">
+              Queue
+            </button>
+          </div>
+        </header>
+      </div>
+    </header>
+    <main>
+      <section class="container">
+        <ul class="movies-collection">
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p class="rights">
+          <span>© 2023 | All Rights Reserved | </span>
+          <span class="goit"
+            ><span>Developed with</span>
+            <svg class="footer-icon" height="14" width="14">
+              <use href="../images/icon-footer.svg#icon-heart"></use>
+            </svg>
+            <a href="#" class="team-link js__modal-members-open"> by GoIT Students</a></span
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="../index.js"></script>
+  </body>
+</html>
