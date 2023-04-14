@@ -13,50 +13,58 @@
     <link rel="stylesheet" href="/src/sass/index.scss" />
   </head>
   <body>
-    <div class="container">
-      <header class="header-library">
-        <div class="header-nav">
-          <div class="search">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              class="search-input"
-              placeholder="Movie search"
-            />
-            <svg class="icon-search">
-              <use href="/src/images/icons.svg#icon-search"></use>
+    <header>
+      <div class="container">
+        <header class="header-library">
+          <div class="header-nav">
+            <div class="search">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                class="search-input"
+                placeholder="Movie search"
+              />
+              <svg class="icon-search">
+                <use href="/src/images/icons.svg#icon-search"></use>
+              </svg>
+            </div>
+            <div class="pages-btn">
+              <a href="/src/index.html"
+                ><button type="button" class="page-button home-button">
+                  Home
+                </button></a
+              >
+              <a href="/src/partials/my_library.html"
+                ><button
+                  type="button"
+                  class="page-button library-button current"
+                >
+                  My library
+                </button></a
+              >
+            </div>
+          </div>
+          <a href="/src/index.html" class="logo-link-library">
+            <svg class="icon-film">
+              <use href="/src/images/icons.svg#icon-film"></use>
             </svg>
+            <span class="filmoteka">Filmoteka</span>
+          </a>
+          <div class="add-btn">
+            <button type="button" class="page-button watched-button active">
+              Watched
+            </button>
+            <button type="button" class="page-button queue-button">
+              Queue
+            </button>
           </div>
-          <div class="pages-btn">
-            <a href="/src/index.html"
-              ><button type="button" class="page-button home-button">
-                Home
-              </button></a
-            >
-            <a href="/src/partials/my_library.html"
-              ><button type="button" class="page-button library-button current">
-                My library
-              </button></a
-            >
-          </div>
-        </div>
-        <a href="/src/index.html" class="logo-link-library">
-          <svg class="icon-film">
-            <use href="/src/images/icons.svg#icon-film"></use>
-          </svg>
-          <span class="filmoteka">Filmoteka</span>
-        </a>
-        <div class="add-btn">
-          <button type="button" class="page-button watched-button active">
-            Watched
-          </button>
-          <button type="button" class="page-button queue-button">Queue</button>
-        </div>
-      </header>
-    </div>
+        </header>
+      </div>
+    </header>
     <main>
 
+      
     </main>
     <footer class="footer">
       <div class="container">
