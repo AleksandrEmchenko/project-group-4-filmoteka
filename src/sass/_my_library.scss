@@ -1,0 +1,17 @@
+.movies-collection {
+ padding-top: 20px;
+ padding-bottom: 40px;
+
+ @include tablet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  margin: -16px;
+  padding-bottom: 60px;
+ }
+
+ @include desktop {
+  gap: 16px;
+ }
+}
