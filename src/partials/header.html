@@ -2,17 +2,21 @@
   <header class="header">
     <div class="header-nav">
       <div class="search">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          class="search-input"
-          placeholder="Movie search"
-        />
+        <form class="search-form">
+            <input
+              type="text"
+              name="search"
+              id="search"
+              class="search-input"
+              placeholder="Movie search"
+            />
+        </form>
+
         <svg class="icon-search">
           <use href="/src/images/icons.svg#icon-search"></use>
         </svg>
       </div>
+
       <div class="pages-btn">
         <a href="/src/index.html"
           ><button type="button" class="page-button home-button current">
@@ -24,6 +28,9 @@
             My library
           </button></a
         >
+        <svg class="icon-user js__auth-modal-open">
+          <use href="/src/images/icons.svg#icon-user"></use>
+        </svg>
       </div>
     </div>
 
@@ -33,7 +40,6 @@
       </svg>
       <span class="filmoteka">Filmoteka</span>
     </a>
-
-    <button class="test_button">TEST</button>
   </header>
 </div>
+<button class="test_button">TEST</button>
