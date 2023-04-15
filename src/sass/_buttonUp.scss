@@ -1,0 +1,16 @@
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: var(--inverseMainColor);
+    color: var(--secondaryTextColor);
+    border: 2px solid var(--secondaryTextColor);
+    border-radius: 20px;
+  }
