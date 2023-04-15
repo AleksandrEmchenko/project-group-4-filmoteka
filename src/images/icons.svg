@@ -13,5 +13,15 @@
             <path stroke-width="2" stroke-miterlimit="4" stroke-linecap="round"
                 stroke-linejoin="round" d="M28 28l-5.8-5.8"></path>
         </symbol>
+        <symbol id="icon-user" viewBox="0 0 32 32">
+            <path stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M30 16c0 7.732-6.268 14-14 14s-14-6.268-14-14c0-7.732 6.268-14 14-14s14 6.268 14 14z"></path>
+            <path stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 13c0 2.761-2.239 5-5 5s-5-2.239-5-5c0-2.761 2.239-5 5-5s5 2.239 5 5z"></path>
+            <path stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" d="M5.4 25.1c1.8-4.1 5.8-7 10.6-7s8.9 2.9 10.6 7"></path>
+        </symbol>
     </defs>
 </svg>
