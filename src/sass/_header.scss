@@ -275,7 +275,7 @@
   justify-content: center;
   gap: 8px;
 
-  margin-top: 312px;
+  margin-top: 270px;
   padding-bottom: 20px;
 
   @include tablet {
@@ -302,13 +302,13 @@
 
   color: rgb(255, 255, 255);
   stroke: currentColor;
-  fill: transparent;
+  fill: black;
 
   cursor: pointer;
 
   &:hover {
     stroke: black;
-    fill: transparent;
+    fill: black;
     filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
   }
 
@@ -321,4 +321,9 @@
     width: 42px;
     height: 42px;
   }
+}
+
+.js__auth-settings {
+  display: flex;
+  flex-direction: row;
 }
