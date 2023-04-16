@@ -68,7 +68,8 @@ function renderCardsFromRequest(event) {
   let currentPage = 1;
 
   getFilm
-    .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
+    // .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
+    .getSearchKeyword(requestData, currentPage)
     .then(filmData => {
       cont.innerHTML = '';
 
