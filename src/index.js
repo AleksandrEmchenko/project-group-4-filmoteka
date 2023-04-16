@@ -1,4 +1,4 @@
-import "./js/renderFilmModal.js";
+// import "./js/renderFilmModal.js";
 import "./js/membersModal.js";
 import "./js/createCards.js";
 import "./js/loaderSpinner.js";
