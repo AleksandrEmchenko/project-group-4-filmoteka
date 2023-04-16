@@ -1,3 +1,5 @@
+import { setToLocalStorage } from './localStorage';
+
 const API_KEY = '351363cde76d5d5ccd40418b50fed610';
 const modal = document.querySelector('[data-modal]');
 const modalContent = document.querySelector('.film_modal-content');
@@ -24,12 +26,12 @@ function fetchOneMovieInfo(movie_id) {
     .then((data) => ({
       ...data,
         popularity: data.popularity.toFixed(2),
-      
+
     }));
 }
 
 function renderMovieCard(data) {
-  
+
     const { title, vote_count, popularity, original_title, overview, poster_path, genres, vote_average } =
         data;
     const genresFormatted = genres.map((genre) => genre.name).join(', ');
@@ -68,6 +70,12 @@ function renderMovieCard(data) {
     </div>`;
 
     modalWrap.insertAdjacentHTML('beforeend', movieCardMarkup);
+
+  const addToWatchedBtn = document.querySelector('.add-to-watched');
+  const addToQueueBtn = document.querySelector('.add-to-queue');
+
+  addToWatchedBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
+  addToQueueBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
 }
 
 function openModal(data) {
@@ -81,7 +89,7 @@ function onCloseModal() {
   modal.removeEventListener('click', onBackDropClick);
   document.removeEventListener('keydown', onEscKeyPress);
 }
-  
+
   function onBackDropClick(event) {
   if (event.currentTarget === event.target) {
     onCloseModal();
@@ -89,7 +97,7 @@ function onCloseModal() {
   modal.removeEventListener('click', onBackDropClick);
   document.removeEventListener('keydown', onEscKeyPress);
 }
-  
+
    function onEscKeyPress(event) {
     if (event.code !== 'Escape') {
       return;
