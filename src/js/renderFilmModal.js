@@ -159,3 +159,4 @@ function updateWatchedButtonText(id) {
     addToWatchedBtn.textContent = 'Add to watched';
   }
 }
+
