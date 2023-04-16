@@ -1,3 +1,11 @@
+// FIRE BASE ----
+
+import './js/firebaseAuth.js';
+import "./js/authModal.js";
+
+// --------------
+
+
 import './js/renderFilmModal';
 import "./js/membersModal.js";
 import "./js/createCards.js";
