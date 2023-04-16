@@ -4,9 +4,11 @@ const API_KEY = '351363cde76d5d5ccd40418b50fed610';
 const modal = document.querySelector('[data-modal]');
 const modalContent = document.querySelector('.film_modal-content');
 const testButton = document.querySelector('.test_button');
- const modalWrap = document.querySelector('.modal__wrap');
+const modalWrap = document.querySelector('.modal__wrap');
 
-testButton.addEventListener('click', makeModal);
+if (testButton !== null) {
+  testButton.addEventListener('click', makeModal);
+}
 
 function makeModal(event) {
     event.preventDefault()

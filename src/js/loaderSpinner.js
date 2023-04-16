@@ -1,4 +1,4 @@
-class loaderSpinner {
+export class loaderSpinner {
     
     constructor(spinner, list) {
         this.spinnerRef = spinner
