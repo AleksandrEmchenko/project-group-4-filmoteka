@@ -10,3 +10,55 @@ h1 {
 h2 {
     color: var(--textColorFooter);
 }
+
+.gallery--container {
+    padding-top: 20px;
+    @media screen and (min-width: 768px) {
+        padding-top: 32px;
+    }
+}
+.gallery-list {
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+    @media screen and (min-width: 1280px) {
+        column-gap: 16px;
+    }
+}
+
+.film__card {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+        flex-basis: calc((100% - 32px) / 2);
+    }
+    @media screen and (min-width: 1280px) {
+        flex-basis: calc((100% - 32px) / 3);
+    }
+    
+    &:not(:last-child) {
+        @media screen and (max-width: 768px) {
+            margin-bottom: 20px;
+        }
+    }
+
+    & img {
+        overflow: hidden;
+        border-radius: 5px;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+        @media screen and (min-width: 768px) {
+            height: 455px;
+        }
+        @media screen and (min-width: 1280px) {
+            height: 574px;
+        }
+    }
+   
+    &__link {
+        display: block;
+    } 
+}
+ 

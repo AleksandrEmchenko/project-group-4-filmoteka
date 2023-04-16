@@ -18,7 +18,6 @@
     align-items: center;
     transition: all 0.3s ease;
     @include tablet {
-
     }
     
 
@@ -48,8 +47,7 @@
         transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
         stroke: #000000;
         }
-       
-    }
+     }
 
     &-content {
         max-height: 80vh;
@@ -101,28 +99,54 @@
         @include tablet {
             width: 264px;
             height: 374px;
-
-        }
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
         @include desktop {
             width: 375px;
             height: 478px;
         }
+
+    }
+  }
+  &-content {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 200px;
+    width: 280px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+
+    @include tablet {
+      width: 704px;
+      padding: 20px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
     }
 
-    &-about {
-        width: fit-content;
-
-        @include tablet {
-            margin-left: 68px;
-
-        }
-
-        @include desktop {
-            margin-left: 16px;
-
-        }
+    @include desktop {
+      width: 806px;
+      flex-basis: 50%;
     }
+  }
+
+  &-img {
+    border-radius: 5px;
+    height: 357px;
+    width: 240px;
+
+    @include tablet {
+      width: 264px;
+      height: 373.55px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
 
     &-title {
         font-family: 'Roboto';
@@ -139,7 +163,10 @@
             margin-top: 0;
             
         }
+
     }
+  }
+
 
     &-info {
         display: flex;
@@ -168,28 +195,39 @@
         font-weight: 500;
         font-size: 12px;
         line-height: 1.66;
-    }
 
-    .film_btn-list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        gap: 4px;
-
-        @include tablet {
-            gap: 8px;
-        }
     }
-}
+  }
+
+  &-title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #000000;
+
+    @include mobile {
+      margin-top: 20px;
+    }
+  }
+
 
 .film_btn {
+
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 1.166;
+    line-height: 20px;
+  }
+
+  .film_btn-list {
+    display: flex;
     justify-content: center;
+
     text-align: center;
     text-transform: uppercase;
     border: none;
@@ -296,3 +334,4 @@
 .original-title {
     text-transform: uppercase;
 }
+

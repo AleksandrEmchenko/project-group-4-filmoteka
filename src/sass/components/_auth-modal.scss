@@ -1,0 +1,247 @@
+.auth__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    z-index: 13;
+    opacity: 1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth__backdrop--hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth__modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45vh);
+
+    width: 270px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #B92F2C;
+    
+    @include tablet {
+        transform: translate(-50%, -50%);
+        width: fit-content;
+        height: 461px;
+        display: flex;
+    }
+}
+
+.auth__close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    background-color: transparent;
+    border: 0;
+
+    cursor: pointer;
+
+    &:hover {
+        .auth__close-btn-icon {
+            stroke: #B92F2C;
+        }
+    }
+}
+
+.auth__close-btn-icon {
+    stroke: #FFFFFF;
+
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    @include tablet {
+        stroke: #000000;
+    }
+}
+
+.auth__image {
+    width: 270px;
+    height: 46px;
+
+    margin-bottom: 10px;
+
+    background-image: url('./../images/mobile-auth-bg.jpg');
+
+    @include tablet {
+        width: 261px;
+        height: 100%;
+        background-image: url('./../images/auth-img.jpg');
+    }
+}
+
+.auth__modal-content {
+    max-width: 445px;
+    padding: 15px 15px 20px 15px;
+
+    @include tablet {
+        padding: 30px;
+    }
+}
+
+.auth__modals-wrap {
+    overflow-x: hidden;
+}
+
+.auth__modals {
+    display: flex;
+
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: center;
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth__title {
+    margin-bottom: 20px;
+
+    @include tablet {
+        margin-bottom: 59px;
+    }
+}
+
+.auth__form {
+    width: fit-content;
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.signup__modal {
+
+}
+
+.auth__input-field {
+    position: relative;
+
+    width: 240px;
+    height: 38px;
+
+    border-bottom: 1px solid #000000;
+
+    @include tablet {
+        width: 385px;
+    }
+}
+
+.auth__form-input {
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+    outline: 0;
+
+    font-size: 15px;
+    line-height: 1.2;
+    color: #000000;
+}
+
+.auth__form-label {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+
+    font-size: 15px;
+    line-height: 1.2;
+    color: #727272;;
+
+    pointer-events: none;
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth__form-input:not(:placeholder-shown) + .auth__form-label,
+.auth__form-input:focus + .auth__form-label {
+    transform: translateY(-160%) translateX(-10px) scale(0.9);
+    opacity: 0.5;
+}
+
+.signin__modal {
+
+}
+
+.signin__form {
+
+}
+
+
+.auth__sumbit-btn {
+    padding: 14px 32px;
+
+    border: 1px solid transparent;
+    border-radius: 100px;
+    background-color: #B92F2C;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #FFFFFF;
+
+    cursor: pointer;
+
+    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                baclground-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        background-color: transparent;
+        border: 1px solid #000000;
+        color: #B92F2C;
+    }
+}
+
+.auth__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    @include tablet {
+        width: fit-content;
+        margin-left: auto;
+
+        flex-direction: row;
+        gap: 13px;
+    }
+}
+
+.auth__message {
+    font-size: 13px;
+    line-height: 1.2;
+    color: #727272;
+}
+
+.auth__alternative {
+    font-size: 15px;
+    line-height: 1.2;
+    color: #000000;
+
+    cursor: pointer;
+
+    &:hover {
+        color: #B92F2C
+    }
+}
+
+.auth__form-disabled {
+    display: none;
+}

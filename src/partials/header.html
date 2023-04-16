@@ -3,13 +3,13 @@
     <div class="header-nav">
       <div class="search">
         <form class="search-form">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              class="search-input"
-              placeholder="Movie search"
-            />
+          <input
+            type="text"
+            name="search"
+            id="search"
+            class="search-input"
+            placeholder="Movie search"
+          />
         </form>
 
         <svg class="icon-search">
@@ -23,7 +23,7 @@
             Home
           </button></a
         >
-        <a href="/src/library.html"
+        <a href="/src/library.html" class="js__library-button"
           ><button type="button" class="page-button library-button">
             My library
           </button></a
@@ -31,6 +31,14 @@
         <svg class="icon-user js__auth-modal-open">
           <use href="/src/images/icons.svg#icon-user"></use>
         </svg>
+        <div class="js__auth-settings" style="display: none">
+          <svg class="icon-delete_user js__delete-user">
+            <use href="/src/images/icons.svg#icon-delete_user"></use>
+          </svg>
+          <svg class="icon-sign_out js__sign-out">
+            <use href="/src/images/icons.svg#icon-sign_out"></use>
+          </svg>
+        </div>
       </div>
     </div>
 
