@@ -20,8 +20,6 @@
     @include tablet {
     }
     
-
-
     &__close-btn {
     position: absolute;
         right: 8px;
@@ -32,6 +30,8 @@
     
         padding: 0;
         margin: 0;
+
+        fill: #000000;
     
         background-color: transparent;
         border: 0;
@@ -99,54 +99,54 @@
         @include tablet {
             width: 264px;
             height: 374px;
-    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
         @include desktop {
             width: 375px;
             height: 478px;
+            }
+        }
+    }
+
+    &-content {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: 200px;
+        width: 280px;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.8);
+
+        @include tablet {
+        width: 704px;
+        padding: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
         }
 
-    }
-  }
-  &-content {
-    position: absolute;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 200px;
-    width: 280px;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.8);
-
-    @include tablet {
-      width: 704px;
-      padding: 20px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
+        @include desktop {
+        width: 806px;
+        flex-basis: 50%;
+        }
     }
 
-    @include desktop {
-      width: 806px;
-      flex-basis: 50%;
+    &-img {
+        border-radius: 5px;
+        height: 357px;
+        width: 240px;
+
+        @include tablet {
+        width: 264px;
+        height: 373.55px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        }
     }
-  }
-
-  &-img {
-    border-radius: 5px;
-    height: 357px;
-    width: 240px;
-
-    @include tablet {
-      width: 264px;
-      height: 373.55px;
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-
 
     &-title {
         font-family: 'Roboto';
@@ -165,8 +165,6 @@
         }
 
     }
-  }
-
 
     &-info {
         display: flex;
@@ -196,23 +194,23 @@
         font-size: 12px;
         line-height: 1.66;
 
+        }
     }
-  }
 
-  &-title {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 35px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    color: #000000;
+    // &-title {
+    //     font-family: 'Roboto';
+    //     font-style: normal;
+    //     font-weight: 500;
+    //     font-size: 30px;
+    //     line-height: 35px;
+    //     text-transform: uppercase;
+    //     margin-bottom: 20px;
+    //     color: #000000;
 
-    @include mobile {
-      margin-top: 20px;
-    }
-  }
+    //     @include mobile {
+    //     margin-top: 20px;
+    //     }
+    // }
 
 
 .film_btn {
