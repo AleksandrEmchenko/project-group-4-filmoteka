@@ -103,7 +103,7 @@ function renderCardsFromRequest(event) {
         const pagination = new Pagination(container, options, requestData);
 
         pagination.on('afterMove', event => {
-          currentPage = event.page;
+          let currentPage = event.page;
 
           getFilm
             .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
