@@ -1,5 +1,6 @@
 // FIRE BASE ----
 
+import './js/firebaseInit';
 import './js/firebaseAuth.js';
 import "./js/authModal.js";
 
