@@ -17,37 +17,39 @@
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    @include tablet {
-    }
-    
+
+    @include tablet {}
+
+
+
     &__close-btn {
-    position: absolute;
+        position: absolute;
         right: 8px;
         top: 8px;
         z-index: 1;
         width: 30px;
         height: 30px;
-    
+
         padding: 0;
         margin: 0;
 
-        fill: #000000;
-    
         background-color: transparent;
         border: 0;
-    
+
         cursor: pointer;
+
         &:hover {
-                .close-modal-button-icon {
-                    stroke: #B92F2C;
-                }
+            .close-modal-button-icon {
+                stroke: #B92F2C;
             }
+        }
 
         svg {
-        transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        stroke: #000000;
+            transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            stroke: #000000;
         }
-     }
+
+    }
 
     &-content {
         max-height: 80vh;
@@ -99,52 +101,26 @@
         @include tablet {
             width: 264px;
             height: 374px;
-            transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+        }
 
         @include desktop {
             width: 375px;
             height: 478px;
-            }
         }
     }
 
-    &-content {
-        position: absolute;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        min-height: 200px;
-        width: 280px;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%) scale(0.8);
+    &-about {
+        width: fit-content;
 
         @include tablet {
-        width: 704px;
-        padding: 20px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.8);
+            margin-left: 68px;
+
         }
 
         @include desktop {
-        width: 806px;
-        flex-basis: 50%;
-        }
-    }
+            margin-left: 16px;
 
-    &-img {
-        border-radius: 5px;
-        height: 357px;
-        width: 240px;
-
-        @include tablet {
-        width: 264px;
-        height: 373.55px;
-        padding-top: 20px;
-        padding-bottom: 20px;
         }
     }
 
@@ -161,19 +137,20 @@
 
         @include tablet {
             margin-top: 0;
-            
-        }
 
+        }
     }
 
     &-info {
         display: flex;
         margin-bottom: 20px;
         justify-content: space-between;
+
         @include tablet {
             justify-content: start;
             gap: 35px;
         }
+
         @include tablet {
             gap: 63px;
             justify-content: start;
@@ -193,39 +170,28 @@
         font-weight: 500;
         font-size: 12px;
         line-height: 1.66;
-
-        }
     }
 
-    // &-title {
-    //     font-family: 'Roboto';
-    //     font-style: normal;
-    //     font-weight: 500;
-    //     font-size: 30px;
-    //     line-height: 35px;
-    //     text-transform: uppercase;
-    //     margin-bottom: 20px;
-    //     color: #000000;
+    .film_btn-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        gap: 4px;
 
-    //     @include mobile {
-    //     margin-top: 20px;
-    //     }
-    // }
-
+        @include tablet {
+            gap: 8px;
+        }
+    }
+}
 
 .film_btn {
-
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 20px;
-  }
-
-  .film_btn-list {
-    display: flex;
+    line-height: 1.166;
     justify-content: center;
-
     text-align: center;
     text-transform: uppercase;
     border: none;
@@ -243,15 +209,17 @@
         color: #B92F2C;
         border: 1px solid #000000;
     }
+
     @include tablet {
         height: 50px;
         width: 140px;
     }
-        @include desktop {
-            // padding: 14px 32px;
-            height: 50px;
-            width: 190px;
-        }
+
+    @include desktop {
+        // padding: 14px 32px;
+        height: 50px;
+        width: 190px;
+    }
 }
 
 .info-value,
@@ -276,7 +244,7 @@
 
 // .add-to-watched {
 //     // padding: 10px 12px;
-    
+
 
 //     @include tablet {
 //         padding: 12px 18px;
@@ -323,13 +291,12 @@
     border-radius: 5px;
     color: #FFFFFF;
     padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+    padding-bottom: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
 
 }
 
 .original-title {
     text-transform: uppercase;
 }
-
