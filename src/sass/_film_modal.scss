@@ -28,13 +28,21 @@
         cursor: pointer;
         outline: none;
 
-        svg {
-            width: 30px;
-            height: 30px;
-            fill: #fff;
-        }
+        // svg {
+        //     width: 30px;
+        //     height: 30px;
+        //     fill: #fff;
+        // }
     }
+.film_modal__close-btn__icon{
+    stroke: #FFFFFF;
 
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    @include tablet {
+        stroke: #000000;
+    }    
+}
     &-content {
         position: absolute;
         background-color: #fff;
