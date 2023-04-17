@@ -7,7 +7,7 @@ export class RealtimeDataBaseAPI {
     // FUNCTION ADD TO WATCHED
     async addToWatched(film) {
         try {
-            await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/watched/${film.title}.json`, {
+            await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/watched/${film.id}.json`, {
                 method: 'POST',
                 body: JSON.stringify(film),
                 headers: {
@@ -22,7 +22,7 @@ export class RealtimeDataBaseAPI {
     // FUNCTION ADD TO QUEUE
     async addToQueue(film) {
         try {
-            const response = await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/queue/${film.title}.json`, {
+            const response = await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/queue/${film.id}.json`, {
                 method: 'POST',
                 body: JSON.stringify(film),
                 headers: {
@@ -60,7 +60,7 @@ export class RealtimeDataBaseAPI {
     // FUNCTION DELETE WATCHED FILM
     async deleteFilmFromWatched(film) {
         try {
-            await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/watched/${film.title}.json`, {
+            await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/watched/${film.id}.json`, {
                 method: 'DELETE',
             })
             Notify.success('Successfully deleted from watched');
@@ -72,7 +72,7 @@ export class RealtimeDataBaseAPI {
     // FUNCTION DELETE FILM FROM QUEUE
     async deleteFilmFromQueue(film) {
         try {
-            await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/queue/${film.title}.json`, {
+            await fetch(`https://filmoteka-group-6-766c8-default-rtdb.europe-west1.firebasedatabase.app/${this.userUID}/queue/${film.id}.json`, {
                 method: 'DELETE',
             })
             Notify.success('Successfully deleted from watched');
