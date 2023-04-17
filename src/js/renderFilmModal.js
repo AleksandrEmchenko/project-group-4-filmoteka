@@ -99,7 +99,7 @@ export function renderMovieCard(data) {
                   addToWatchedBtn.textContent = 'Remove From Queue'
                   return
               }
-              addToWatchedBtn.textContent = 'Add To Watched'
+              addToQueueBtn.textContent = 'Add To Queue'
               databaseAPI.deleteFilmFromQueue(data)
           })
         })
