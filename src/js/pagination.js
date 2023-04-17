@@ -12,7 +12,11 @@ const cont = document.querySelector('.gallery-list');
 const searchFormEl = document.querySelector('.search-form');
 const inputEl = document.getElementById('search');
 
-searchFormEl.addEventListener('submit', renderCardsFromRequest);
+if (searchFormEl !== null) {
+  searchFormEl.addEventListener('submit', renderCardsFromRequest);
+}
+
+
 
 function renderTrendCardsFilm() {
   getFilm.getTrendingMovie().then(trendFilmData => {
@@ -57,7 +61,10 @@ function renderTrendCardsFilm() {
         });
       });
     }
-    cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
+    if (cont !== null) {
+      cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
+    }
+    
   });
 }
 renderTrendCardsFilm();

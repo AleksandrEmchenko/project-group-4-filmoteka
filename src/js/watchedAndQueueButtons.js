@@ -1,36 +1,10 @@
 import {RealtimeDataBaseAPI} from './firebaseDatabaseAPI';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getPosterPath } from './createCards';
+import { getGenres } from './createCards';
+import { getYear } from './createCards';
 import app from './firebaseInit';
-
-console.log("WORK")
-
-const filmOne = {
-    id: '1', 
-    poster_path: '', 
-    title: 'filmOne', 
-    original_title: 'filmOne', 
-    release_date: '', 
-    genre_ids: '',
-}
-
-const filmSecond = {
-    id: '2', 
-    poster_path: '', 
-    title: 'filmSecond', 
-    original_title: 'filmSecond', 
-    release_date: '', 
-    genre_ids: '',
-}
-
-const filmThird = {
-    id: '3', 
-    poster_path: '', 
-    title: 'filmThird', 
-    original_title: 'filmThird', 
-    release_date: '', 
-    genre_ids: '',
-}
-
+import { loaderSpinner } from './loaderSpinner';
 
 const auth = getAuth(app);
 
@@ -38,13 +12,18 @@ const libraryRefs = {
     watchedButton: document.querySelector('.js__watched-button'),
     queueButton: document.querySelector('.js__queue-button'),
     moviesCollection: document.querySelector('.js__movies-collection'),
+    loader: document.querySelector('.loading-spinner--hide')
 }
 
+const paginationCont = document.querySelector('.tui-pagination')
+
+const loader = new loaderSpinner(libraryRefs.loader, libraryRefs.moviesCollection)
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // IF USER SIGNED IN
         const uid = user.uid;
+
         const databaseAPI = new RealtimeDataBaseAPI(uid)
 
         if (libraryRefs.watchedButton !== null) {
@@ -57,23 +36,34 @@ onAuthStateChanged(auth, (user) => {
         // RENDER MARKUP AND FETCH DATA FUNCTIONS
         async function onRenderWatchedFilms() {
             try {
+                loader.show()
                 const filmsList = await databaseAPI.getWatchedFilms()
-                for(key in filmsList) {
-                    console.log(key)
+                for (film in filmsList) {
+                    const filmData = getFilmData(filmsList[film])
+                    console.log(filmData)
+                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))  
                 }
+                
+                loader.hide()
             } catch (error) {
+                loader.hide()
                 console.log(error)
             }
         }
         
         async function onRenderQueueFilms() {
             try {
+                loader.show()
                 const filmsList = await databaseAPI.getQueueFilms()
-                for(key in filmsList) {
-                    console.log(key)
+                for (film in filmsList) {
+                    const filmData = getFilmData(filmsList[film])
+                    console.log(filmData)
+                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))  
                 }
+                loader.hide()
             } catch (error) {
                 console.log(error)
+                loader.hide()
             }
         }
 
@@ -82,29 +72,42 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 
-function getFilmData(filmObj) {
-    const keys = Object.keys(filmObj)
-    return filmObj[keys[0]]
+function getFilmData(obj) {
+    const firstKey = Object.keys(obj)[0];
+    return obj[firstKey];
 }
 
 function createCards(data) {
-    return data.results
-        .map(
-        ({ id, poster_path, title, original_title, release_date, genre_ids }) => {
-            return `<li class="film__card" id="${id}">
-                <a class="film__card__link">
-                    <img src="${getPosterPath(
-                    poster_path
-                    )}" alt="${title}" loading="lazy" />
-                    <h2>${original_title}</h2>
-                    <p>${getGenres(genre_ids)} | ${getYear(release_date)}</p>
-                </a>
-            </li>
-            `;
-            }
-        )
-    .join("");
+    return `
+    <li class="film__card" id="${data.id}">
+        <a class="film__card__link">
+            <img src="${getPosterPath(poster_path)}" alt="${data.title}" loading="lazy" />
+            <h2>${data.original_title}</h2>
+            <p>${getGenres(genre_ids)} | ${getYear(release_date)}</p>
+        </a>
+    </li> 
+    `
 }
 
+// BUTTONS ACTIVE CHANGER
 
+if (libraryRefs.watchedButton !== null) {
+    libraryRefs.watchedButton.addEventListener('click', () => {
+        libraryRefs.watchedButton.classList.add('active')
+        libraryRefs.queueButton.classList.remove('active')
+    })
+}
 
+if (libraryRefs.queueButton !== null) {
+    libraryRefs.queueButton.addEventListener('click', () => {
+        libraryRefs.watchedButton.classList.remove('active')
+        libraryRefs.queueButton.classList.add('active')
+    })
+}
+
+// LIBRARY PAG DISPLAY
+if (libraryRefs.moviesCollection !== null) {
+    if (libraryRefs.moviesCollection.children.length < 20) {
+        paginationCont.style.display = 'none'
+    }
+}
