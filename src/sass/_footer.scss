@@ -20,7 +20,7 @@
 .goit {
   margin-top: 12px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 
   @include tablet {
     margin-top: 0;
@@ -31,13 +31,10 @@
   fill: #b92f2c;
   margin: 0 5px;
 }
-.footer-icon:hover {
-  animation-name: changeColor;
-  animation-duration: 2000ms;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
+
 .team-link {
+  display: flex;
+  align-items: center;
   color: var(--textColorFooter);
   text-decoration: underline;
   transition-property: color;
@@ -47,6 +44,12 @@
 .team-link:hover,
 .team-link:focus {
   color: #b92f2c;
+  & .footer-icon {
+    animation-name: changeColor;
+    animation-duration: 2000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
 }
 @keyframes changeColor {
   0% {
@@ -55,6 +58,6 @@
   }
   100% {
     fill: yellow;
-    transform: scale(1.5) translateX(8%) translateY(8%);
+    transform: scale(1.25) translateX(5%) translateY(5%);
   }
 }

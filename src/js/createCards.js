@@ -1,3 +1,14 @@
+import {
+  fetchOneMovieInfo,
+  openModal,
+  onBackDropClick,
+  onEscKeyPress,
+  onCloseModal,
+  updateQeueuButtonText,
+  updateWatchedButtonText,
+
+} from './renderFilmModal'
+
 export function createCards(data) {
   return data.results
     .map(
@@ -16,6 +27,22 @@ export function createCards(data) {
     )
     .join("");
 }
+document.addEventListener('click', function (event) {
+  const filmCard = event.target.closest('.film__card');
+  if (filmCard) {
+    const movieId = filmCard.getAttribute('id');
+    fetchOneMovieInfo(movieId).then((data) => {
+      openModal(data);
+      const modal = document.querySelector('[data-modal]');
+      modal.addEventListener('click', onBackDropClick);
+      document.addEventListener('keydown', onEscKeyPress);
+      const closeBtn = modal.querySelector('.film_modal__close-btn');
+      closeBtn.addEventListener('click', onCloseModal);
+      updateQeueuButtonText(movieId);
+      updateWatchedButtonText(movieId);
+    });
+  }
+});
 
 export function getYear(release_date) {
   return release_date ? release_date.split("-")[0] : new Date().getFullYear();
@@ -98,3 +125,6 @@ export function getGenres(genre_ids) {
   }
   return genres.join(", ");
 }
+
+
+
