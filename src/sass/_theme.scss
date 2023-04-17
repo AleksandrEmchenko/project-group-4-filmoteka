@@ -50,7 +50,12 @@
   body.body-theme {
     .tui-page-btn {
       color: red;
-          background-color: #191615;
+        background-color: #191615;
+        border: 0px;
+    }
+    .tui-page-btn:hover{
+        background-color: #545454;
+        border-radius: 50%;
     }
   }
   
