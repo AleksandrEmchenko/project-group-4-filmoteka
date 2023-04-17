@@ -68,7 +68,8 @@ function renderCardsFromRequest(event) {
   let currentPage = 1;
 
   getFilm
-    .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
+    // .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
+    .getSearchKeyword(requestData, currentPage)
     .then(filmData => {
       cont.innerHTML = '';
 
@@ -103,10 +104,11 @@ function renderCardsFromRequest(event) {
         const pagination = new Pagination(container, options, requestData);
 
         pagination.on('afterMove', event => {
-          currentPage = event.page;
+          let currentPage = event.page;
 
           getFilm
-            .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
+            // .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
+            .getSearchKeyword(requestData, currentPage)
             .then(filmData => {
               cont.innerHTML = '';
 
