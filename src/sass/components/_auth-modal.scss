@@ -73,11 +73,16 @@
     margin-bottom: 10px;
 
     background-image: url('./../images/mobile-auth-bg.jpg');
-
+    @include pixel-ratio-x2 {
+        background-image: url(../images/mobile-auth-bg@2x.jpg);
+      }
     @include tablet {
         width: 261px;
         height: 100%;
         background-image: url('./../images/auth-img.jpg');
+        @include pixel-ratio-x2 {
+            background-image: url(../images/auth-img@2x.jpg);
+          }
     }
 }
 
