@@ -15,7 +15,11 @@ const cont = document.querySelector('.gallery-list');
 const searchFormEl = document.querySelector('.search-form');
 const inputEl = document.getElementById('search');
 
-searchFormEl.addEventListener('submit', renderCardsFromRequest);
+if (searchFormEl !== null) {
+  searchFormEl.addEventListener('submit', renderCardsFromRequest);
+}
+
+
 
 renderTrendCardsFilm();
 
@@ -68,13 +72,15 @@ async function renderTrendCardsFilm() {
             return;
           });
         });
-      }
-      Loading.remove();
+
+      });
+    }
+    if (cont !== null) {
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
-    });
-  } catch {
-    Notify.warning('Oops! something went wrong');
-  }
+    }
+    
+  });
+
 }
 
 /////////////////

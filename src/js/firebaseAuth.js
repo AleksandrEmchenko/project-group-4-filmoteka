@@ -108,17 +108,24 @@ onAuthStateChanged(auth, (user) => {
         authRefs.signOutButton.addEventListener('click', () => {
             signOut(auth).then(() => {
                 Notify.success('Successfully sign uut');
-                pageRefs.openAuthModalButton.style.display = 'none'
-                pageRefs.openAuthModalButton.style.display = 'block'
+                if(pageRefs.openAuthModalButton !== null) {
+                    pageRefs.openAuthModalButton.style.display = 'none'
+                }
+                if (pageRefs.openAuthModalButton !== null) {
+                    pageRefs.openAuthModalButton.style.display = 'block'
+                }
                 location.reload(true)
             }).catch((error) => {
                 Notify.failure("Error");
+                console.log(error)
             })
         })
 
     } else {
         // IF USER SIGNED OUT
-        pageRefs.libraryButton.style.display = 'none'
+        if(pageRefs.libraryButton !== null) {
+            pageRefs.libraryButton.style.display = 'none'
+        }
     }
 })
 

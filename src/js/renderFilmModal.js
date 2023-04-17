@@ -1,4 +1,9 @@
 import { setToLocalStorage } from './localStorage';
+import { RealtimeDataBaseAPI } from './firebaseDatabaseAPI';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from './firebaseInit';
+
+const auth = getAuth(app);
 
 const API_KEY = '351363cde76d5d5ccd40418b50fed610';
 const modal = document.querySelector('[data-modal]');
@@ -140,13 +145,20 @@ export function updateWatchedButtonText(id) {
   }
 }
 
-export function openCloseModal() {
-  openModal(data);
-    const modal = document.querySelector('[data-modal]');
-    modal.addEventListener('click', onBackDropClick);
-    document.addEventListener('keydown', onEscKeyPress);
-    const closeBtn = modal.querySelector('.film_modal__close-btn');
-    closeBtn.addEventListener('click', onCloseModal);
-   updateQeueuButtonText(movieId); updateQeueuButtonText
-    updateWatchedButtonText(movieId)
-}
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+      // IF USER SIGNED IN
+      const uid = user.uid;
+      const databaseAPI = new RealtimeDataBaseAPI(uid)
+      console.log(databaseAPI)
+
+      // ADD LISTENERS TO BUTTONS "ADD TO WATCHED", "ADD TO QUEUE" WITH ACTIONS "databaseAPI.addToWatched(film)" and "databaseAPI.addToQueue(film)"
+      
+
+  } else {
+      // IF USER SIGNED OUT
+  }
+})
+
+
