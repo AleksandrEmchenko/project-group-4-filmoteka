@@ -179,3 +179,7 @@ export function openCloseModal() {
     updateWatchedButtonText(movieId)
 
 }
+
+
+
+
