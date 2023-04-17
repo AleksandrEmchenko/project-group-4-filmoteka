@@ -5,7 +5,9 @@ const modal = document.querySelector('[data-modal]');
 const testButton = document.querySelector('.test_button');
 const modalWrap = document.querySelector('.modal__wrap');
 
-testButton.addEventListener('click', makeModal);
+if (testButton !== null) {
+  testButton.addEventListener('click', makeModal);
+}
 
 function makeModal(event) {
   event.preventDefault()
