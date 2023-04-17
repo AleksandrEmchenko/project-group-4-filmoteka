@@ -13,6 +13,7 @@ import "./js/authModal.js";
 
 import "./js/firebaseDatabaseAPI.js";
 import "./js/watchedAndQueueButtons.js"
+import "./js/btn-theme.js"
 
 import "./js/pagination.js";
 
