@@ -5,6 +5,7 @@ const modal = document.querySelector('[data-modal]');
 const modalWrap = document.querySelector('.modal__wrap');
 
 
+
 if (testButton !== null) {
   testButton.addEventListener('click', makeModal);
 }
@@ -28,6 +29,7 @@ function makeModal(event) {
 //   });
 // }
 //______________________________________________________
+
 
 export async function fetchOneMovieInfo(movie_id) {
   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
