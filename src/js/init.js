@@ -11,5 +11,7 @@ filmApi.getTrendingMovie()
     gallery.innerHTML = galleryFilms
 })
 .catch(error => {
+
     Notify.failure('No list of movies found')
+
 })

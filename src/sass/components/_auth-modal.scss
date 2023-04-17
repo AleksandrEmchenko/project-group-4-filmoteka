@@ -72,12 +72,12 @@
 
     margin-bottom: 10px;
 
-    background-image: url('./../img/mobile-auth-bg.jpg');
+    background-image: url('./../images/mobile-auth-bg.jpg');
 
     @include tablet {
         width: 261px;
         height: 100%;
-        background-image: url('./../img/auth-img.jpg');
+        background-image: url('./../images/auth-img.jpg');
     }
 }
 
