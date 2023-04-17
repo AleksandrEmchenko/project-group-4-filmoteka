@@ -14,13 +14,8 @@ export default class filmApiService {
 
 
   async getSearchKeyword(
-    language,
     query,
-    page,
-    include_adult,
-    region,
-    year,
-    primary_release_year
+    page
   ) {
 
     try {
