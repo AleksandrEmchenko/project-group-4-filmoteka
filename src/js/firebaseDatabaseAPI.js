@@ -11,7 +11,7 @@ export class RealtimeDataBaseAPI {
                 method: 'POST',
                 body: JSON.stringify(film),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 }
             })
             Notify.success('Successfully added to watched');

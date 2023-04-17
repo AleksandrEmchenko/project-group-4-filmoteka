@@ -175,6 +175,10 @@
     opacity: 0.5;
 }
 
+.auth__form-input::placeholder {
+    color: transparent;
+}
+
 .signin__modal {
 
 }
