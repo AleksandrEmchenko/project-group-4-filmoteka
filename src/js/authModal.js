@@ -12,11 +12,14 @@ const refs = {
 }
 
 // Modal Open
-refs.openModalBtn.addEventListener('click', () => {
-    refs.modalWindow.classList.replace('auth__backdrop--hidden', 'auth__backdrop')
-    refs.signInForm.reset()
-    refs.signUpForm.reset()
-})
+if (refs.openModalBtn !== null) {
+    refs.openModalBtn.addEventListener('click', () => {
+        refs.modalWindow.classList.replace('auth__backdrop--hidden', 'auth__backdrop')
+        refs.signInForm.reset()
+        refs.signUpForm.reset()
+    })
+}
+
 
 // Modal Close
 refs.closeModalBtn.addEventListener('click', () => {
@@ -26,6 +29,7 @@ refs.closeModalBtn.addEventListener('click', () => {
 })
 
 const formWidth = refs.modalsList.clientWidth
+
 let isSingIn = true
 
 refs.authAlternativeBtn.addEventListener('click', onSwitchForm)

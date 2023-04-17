@@ -9,4 +9,8 @@ import "./js/buttonUp.js";
 import "./js/firebaseInit.js";
 import "./js/firebaseAuth.js";
 import "./js/authModal.js";
+
+import "./js/firebaseDatabaseAPI.js";
+import "./js/watchedAndQueueButtons.js"
+
 import "./js/pagination.js";

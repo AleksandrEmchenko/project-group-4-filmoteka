@@ -4,12 +4,18 @@ const API_KEY = '351363cde76d5d5ccd40418b50fed610';
 const modal = document.querySelector('[data-modal]');
 const modalWrap = document.querySelector('.modal__wrap');
 
-//перенесено в createCards
-//__________________________________________________
-// export function makeModal(event) {
-//   event.preventDefault()
-//   const movieId = event.getAttribute('id');
-//   fetchOneMovieInfo(movieId).then((data) => {
+
+if (testButton !== null) {
+  testButton.addEventListener('click', makeModal);
+}
+
+function makeModal(event) {
+  event.preventDefault()
+  // event.currentTarget.dataset.id;
+  const movieId = 577; 
+
+  fetchOneMovieInfo(movieId).then((data) => {
+
     
 //     openModal(data);
 //     const modal = document.querySelector('[data-modal]');
