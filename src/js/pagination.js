@@ -83,9 +83,11 @@ async function renderCardsFromRequest(event) {
   event.preventDefault();
   const requestData = inputEl.value;
   let currentPage = 1;
+
   try {
     Loading.dots();
     await getFilm.getSearchKeyword(requestData, currentPage).then(filmData => {
+
       cont.innerHTML = '';
 
       if (filmData.total_results === 0) {
@@ -129,10 +131,12 @@ async function renderCardsFromRequest(event) {
         const pagination = new Pagination(container, options, requestData);
 
         pagination.on('afterMove', event => {
-          currentPage = event.page;
+          let currentPage = event.page;
+
 
           getFilm.getSearchKeyword(requestData, currentPage).then(filmData => {
             cont.innerHTML = '';
+
 
             window.scrollTo({
               top: 0,

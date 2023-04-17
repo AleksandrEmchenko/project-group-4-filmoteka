@@ -3,18 +3,19 @@
     <div class="header-nav">
       <div class="search">
         <form class="search-form">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              class="search-input"
-              placeholder="Movie search"
-            />
+          <input
+            type="text"
+            name="search"
+            id="search"
+            class="search-input"
+            placeholder="Movie search"
+          />
+          <button type="submit" class="submit-button">
+            <svg class="icon-search">
+              <use href="/src/images/icons.svg#icon-search"></use>
+            </svg>
+          </button>
         </form>
-
-        <svg class="icon-search">
-          <use href="/src/images/icons.svg#icon-search"></use>
-        </svg>
       </div>
 
       <div class="pages-btn">
@@ -31,9 +32,13 @@
         <svg class="icon-user js__auth-modal-open">
           <use href="/src/images/icons.svg#icon-user"></use>
         </svg>
-        <div class="js__auth-settings" style="display: none;">
-          <button type="button" class="js__delete-user">Delete User</button>
-          <button type="button" class="js__sign-out">Sign Out</button>
+        <div class="js__auth-settings" style="display: none">
+          <svg class="icon-delete_user js__delete-user">
+            <use href="/src/images/icons.svg#icon-delete_user"></use>
+          </svg>
+          <svg class="icon-sign_out js__sign-out">
+            <use href="/src/images/icons.svg#icon-sign_out"></use>
+          </svg>
         </div>
       </div>
     </div>
@@ -46,4 +51,4 @@
     </a>
   </header>
 </div>
-<button class="test_button">TEST</button>
+

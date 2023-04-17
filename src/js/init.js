@@ -9,5 +9,4 @@ filmApi.getTrendingMovie()
     gallery.innerHTML = galleryFilms
 })
 .catch(error => {
-    console.log(error)
 })
