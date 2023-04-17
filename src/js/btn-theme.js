@@ -4,12 +4,19 @@ const checked = document.querySelector(".theme-checkbox");
 let theme = localStorage.getItem("ui-theme");
 
 window.addEventListener("load", saveTheme);
-btnThemeHeader.addEventListener("click", onTheme);
+
+if (btnThemeHeader !== null) {
+    btnThemeHeader.addEventListener("click", onTheme);
+}
+
 
 function saveTheme() {
  if (theme === "dark") {
   bodyTheme.classList.add("body-theme");
-  checked.setAttribute("checked", true);
+  if (checked !== null) {
+    checked.setAttribute("checked", true);
+  }
+  
  }
 }
 

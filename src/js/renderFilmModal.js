@@ -70,6 +70,46 @@ export function renderMovieCard(data) {
 
   const addToWatchedBtn = document.querySelector('.add-to-watched');
   const addToQueueBtn = document.querySelector('.add-to-queue');
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // IF USER SIGNED IN
+        const uid = user.uid;
+        const databaseAPI = new RealtimeDataBaseAPI(uid)
+        console.log(databaseAPI)
+  
+        // ADD LISTENERS TO BUTTONS "ADD TO WATCHED", "ADD TO QUEUE" WITH ACTIONS "databaseAPI.addToWatched(film)" and "databaseAPI.addToQueue(film)"
+        addToWatchedBtn.addEventListener('click', (event) => {
+            databaseAPI.isIncludeInWathed(data.id).then((r) => {
+              if (r === false) {
+                  databaseAPI.addToWatched(data)
+                  addToWatchedBtn.textContent = 'Remove From Watched'
+                  return
+              }
+              addToWatchedBtn.textContent = 'Add To Watched'
+              databaseAPI.deleteFilmFromWatched(data)
+          })
+          
+        })
+
+        addToQueueBtn.addEventListener('click', (event) => {
+            databaseAPI.isIncludeInQueue(data.id).then((r) => {
+              if (r === false) {
+                  databaseAPI.addToQueue(data)
+                  addToWatchedBtn.textContent = 'Remove From Queue'
+                  return
+              }
+              addToWatchedBtn.textContent = 'Add To Watched'
+              databaseAPI.deleteFilmFromQueue(data)
+          })
+        })
+
+        
+  
+    } else {
+        // IF USER SIGNED OUT
+    }
+  })
   addToWatchedBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
   addToQueueBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
   addToQueueBtn.addEventListener('click', function() {
@@ -146,19 +186,6 @@ export function updateWatchedButtonText(id) {
 }
 
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-      // IF USER SIGNED IN
-      const uid = user.uid;
-      const databaseAPI = new RealtimeDataBaseAPI(uid)
-      console.log(databaseAPI)
 
-      // ADD LISTENERS TO BUTTONS "ADD TO WATCHED", "ADD TO QUEUE" WITH ACTIONS "databaseAPI.addToWatched(film)" and "databaseAPI.addToQueue(film)"
-      
-
-  } else {
-      // IF USER SIGNED OUT
-  }
-})
 
 

@@ -98,6 +98,7 @@ onAuthStateChanged(auth, (user) => {
             deleteUser(user).then(() => {
                 Notify.success('User successfully deleted');
                 location.reload(true)
+                location.href = "./../index.html";
             }).catch((error) => {
                 Notify.failure("Error");
                 console.log(error)
@@ -114,9 +115,11 @@ onAuthStateChanged(auth, (user) => {
                     pageRefs.openAuthModalButton.style.display = 'block'
                 }
                 location.reload(true)
+                location.href = "./../index.html";
             }).catch((error) => {
                 Notify.failure("Error");
                 console.log(error)
+                
             })
         })
 

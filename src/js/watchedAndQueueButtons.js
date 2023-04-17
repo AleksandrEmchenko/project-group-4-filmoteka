@@ -1,7 +1,6 @@
 import {RealtimeDataBaseAPI} from './firebaseDatabaseAPI';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getPosterPath } from './createCards';
-import { getGenres } from './createCards';
 import { getYear } from './createCards';
 import app from './firebaseInit';
 import { loaderSpinner } from './loaderSpinner';
@@ -15,6 +14,8 @@ const libraryRefs = {
     loader: document.querySelector('.loading-spinner--hide')
 }
 
+
+
 const paginationCont = document.querySelector('.tui-pagination')
 
 const loader = new loaderSpinner(libraryRefs.loader, libraryRefs.moviesCollection)
@@ -25,6 +26,8 @@ onAuthStateChanged(auth, (user) => {
         const uid = user.uid;
 
         const databaseAPI = new RealtimeDataBaseAPI(uid)
+
+        onRenderWatchedFilms()
 
         if (libraryRefs.watchedButton !== null) {
             libraryRefs.watchedButton.addEventListener('click', onRenderWatchedFilms)
@@ -41,8 +44,9 @@ onAuthStateChanged(auth, (user) => {
                 for (film in filmsList) {
                     const filmData = getFilmData(filmsList[film])
                     console.log(filmData)
-                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))  
+                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData)) 
                 }
+                
                 
                 loader.hide()
             } catch (error) {
@@ -58,7 +62,7 @@ onAuthStateChanged(auth, (user) => {
                 for (film in filmsList) {
                     const filmData = getFilmData(filmsList[film])
                     console.log(filmData)
-                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))  
+                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))
                 }
                 loader.hide()
             } catch (error) {
@@ -77,16 +81,28 @@ function getFilmData(obj) {
     return obj[firstKey];
 }
 
+// ${getPosterPath(poster_path)}
+// ${getGenres(genre_ids)}
+// ${getYear(release_date)}
+
 function createCards(data) {
     return `
     <li class="film__card" id="${data.id}">
         <a class="film__card__link">
-            <img src="${getPosterPath(poster_path)}" alt="${data.title}" loading="lazy" />
+            <img src="${getPosterPath(data.poster_path)}" alt="${data.title}" loading="lazy" />
             <h2>${data.original_title}</h2>
-            <p>${getGenres(genre_ids)} | ${getYear(release_date)}</p>
+            <p>${getGenres(data.genres)} | ${getYear(data.release_date)}</p>
         </a>
     </li> 
     `
+}
+
+function getGenres(genres) {
+    let genresArray = []
+    for (genre in genres) {
+        genresArray.push(genres[genre].name)
+    }
+    return genresArray.slice(0, 2)
 }
 
 // BUTTONS ACTIVE CHANGER
