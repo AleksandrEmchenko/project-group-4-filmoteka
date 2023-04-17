@@ -151,8 +151,13 @@
   width: 14px;
   height: 14px;
 
-  stroke: var(--mainColor);
+  stroke: grey;
   fill: transparent;
+
+  &:hover {
+    stroke: black;
+    filter: drop-shadow(3px 5px 2px rgb(52, 79, 10 / 0.8));
+  }
 
   @include tablet {
     margin-right: 16px;
@@ -326,4 +331,18 @@
 .js__auth-settings {
   display: flex;
   flex-direction: row;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.submit-button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
