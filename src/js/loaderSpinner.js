@@ -1,5 +1,5 @@
 export class loaderSpinner {
-    
+
     constructor(spinner, list) {
         this.spinnerRef = spinner
         this.list = list
