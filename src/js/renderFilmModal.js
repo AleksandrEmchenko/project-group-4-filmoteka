@@ -139,8 +139,11 @@ export function onEscKeyPress(event) {
 
 
 export function updateQeueuButtonText(id) {
-  const addToQueueBtn = document.querySelector('.add-to-queue');
+  
+const addToQueueBtn = document.querySelector('.add-to-queue');
+
   const localstorage = localStorage.getItem('QUEUE');
+
   if (localstorage === null) {
     addToQueueBtn.textContent = 'Add to queue';
     return;
@@ -176,6 +179,9 @@ export function openCloseModal() {
     closeBtn.addEventListener('click', onCloseModal);
    updateQeueuButtonText(movieId); updateQeueuButtonText
     updateWatchedButtonText(movieId)
+
 }
+
+
 
 
