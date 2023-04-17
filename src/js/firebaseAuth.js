@@ -93,7 +93,6 @@ onAuthStateChanged(auth, (user) => {
         // --------------------------
 
         // console.log(uid)
-        userUID = user.uid
         // USER DELETE
         authRefs.deleteUserButton.addEventListener('click', (e) => {
             deleteUser(user).then(() => {
