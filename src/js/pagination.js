@@ -48,6 +48,7 @@ function renderTrendCardsFilm() {
             '</a>',
         },
       };
+
       const pagination = new Pagination(container, options);
 
       pagination.on('afterMove', event => {
@@ -64,7 +65,7 @@ function renderTrendCardsFilm() {
     if (cont !== null) {
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
     }
-    
+
   });
 }
 renderTrendCardsFilm();
