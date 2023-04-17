@@ -2,8 +2,8 @@ import { setToLocalStorage } from './localStorage';
 
 const API_KEY = '351363cde76d5d5ccd40418b50fed610';
 const modal = document.querySelector('[data-modal]');
-const testButton = document.querySelector('.test_button');
 const modalWrap = document.querySelector('.modal__wrap');
+
 
 if (testButton !== null) {
   testButton.addEventListener('click', makeModal);
@@ -15,18 +15,21 @@ function makeModal(event) {
   const movieId = 577; 
 
   fetchOneMovieInfo(movieId).then((data) => {
-    
-    openModal(data);
-    modal.addEventListener('click', onBackDropClick);
-    document.addEventListener('keydown', onEscKeyPress);
-    const closeBtn = modal.querySelector('.film_modal__close-btn');
-    closeBtn.addEventListener('click', onCloseModal);
-   updateQeueuButtonText(movieId); updateQeueuButtonText
-    updateWatchedButtonText(movieId)
-  });
-}
 
-async function fetchOneMovieInfo(movie_id) {
+    
+//     openModal(data);
+//     const modal = document.querySelector('[data-modal]');
+//     modal.addEventListener('click', onBackDropClick);
+//     document.addEventListener('keydown', onEscKeyPress);
+//     const closeBtn = modal.querySelector('.film_modal__close-btn');
+//     closeBtn.addEventListener('click', onCloseModal);
+//    updateQeueuButtonText(movieId); updateQeueuButtonText
+//     updateWatchedButtonText(movieId)
+//   });
+// }
+//______________________________________________________
+
+export async function fetchOneMovieInfo(movie_id) {
   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
   const response = await fetch(url);
   const data = await response.json();
@@ -36,7 +39,7 @@ async function fetchOneMovieInfo(movie_id) {
   };
 }
 
-function renderMovieCard(data) {
+export function renderMovieCard(data) {
   const { title, vote_count, popularity, original_title, overview, poster_path, genres, vote_average } =
     data;
   const genresFormatted = genres.map((genre) => genre.name).join(', ');
@@ -97,40 +100,43 @@ function renderMovieCard(data) {
 })
 }
 
-function openModal(data) {
+export function openModal(data) {
     modal.classList.remove('is-hidden');
     renderMovieCard(data);
 }
 
-function onCloseModal() {
+export function onCloseModal() {
   modal.classList.add('is-hidden');
-  modalWrap.innerHTML = '';
+  
   modal.removeEventListener('click', onBackDropClick);
   document.removeEventListener('keydown', onEscKeyPress);
+  modalWrap.innerHTML = '';
 }
 
-function onBackDropClick(event) {
+export function onBackDropClick(event) {
   if (event.currentTarget === event.target) {
   modal.classList.add('is-hidden');
-  modalWrap.innerHTML = '';
+  
   modal.removeEventListener('click', onBackDropClick);
-  document.removeEventListener('keydown', onEscKeyPress);
+    document.removeEventListener('keydown', onEscKeyPress);
+    modalWrap.innerHTML = '';
   }
   return;
 }
 
-function onEscKeyPress(event) {
+export function onEscKeyPress(event) {
   if (event.code !== 'Escape') {
     return;
   }
-  modalWrap.innerHTML = '';
+  
   modal.classList.add('is-hidden');
   modal.removeEventListener('click', onBackDropClick);
-  document.removeEventListener('keydown', onEscKeyPress);  
+  document.removeEventListener('keydown', onEscKeyPress);
+  modalWrap.innerHTML = '';  
 }
 
 
-function updateQeueuButtonText(id) {
+export function updateQeueuButtonText(id) {
   
 const addToQueueBtn = document.querySelector('.add-to-queue');
 
@@ -147,7 +153,7 @@ const addToQueueBtn = document.querySelector('.add-to-queue');
   }
 }
 
-function updateWatchedButtonText(id) {
+export function updateWatchedButtonText(id) {
   const addToWatchedBtn = document.querySelector('.add-to-watched');
   const localstorageWatched = localStorage.getItem('WATCHED');
 
@@ -162,3 +168,14 @@ function updateWatchedButtonText(id) {
   }
 }
 
+export function openCloseModal() {
+  openModal(data);
+    const modal = document.querySelector('[data-modal]');
+    modal.addEventListener('click', onBackDropClick);
+    document.addEventListener('keydown', onEscKeyPress);
+    const closeBtn = modal.querySelector('.film_modal__close-btn');
+    closeBtn.addEventListener('click', onCloseModal);
+   updateQeueuButtonText(movieId); updateQeueuButtonText
+    updateWatchedButtonText(movieId)
+
+}
