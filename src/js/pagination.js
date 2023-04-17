@@ -85,68 +85,64 @@ async function renderCardsFromRequest(event) {
   let currentPage = 1;
   try {
     Loading.dots();
-    await getFilm
-      .getSearchKeyword((eng = 'en-U'), requestData, currentPage)
-      .then(filmData => {
-        cont.innerHTML = '';
+    await getFilm.getSearchKeyword(requestData, currentPage).then(filmData => {
+      cont.innerHTML = '';
 
-        if (filmData.total_results === 0) {
-          Notify.warning('Enter a more specific query!');
-          container.innerHTML = '';
-          return;
+      if (filmData.total_results === 0) {
+        Notify.warning('Enter a more specific query!');
+        container.innerHTML = '';
+        return;
+      }
+      cont.insertAdjacentHTML('beforeend', createCards(filmData));
+
+      if (filmData.total_pages > 1) {
+        const options = {
+          totalItems: filmData.total_results,
+          itemsPerPage: 20,
+          visiblePages: 9,
+          page: 1,
+          centerAlign: true,
+          firstItemClassName: 'tui-first-child',
+          lastItemClassName: 'tui-last-child',
+          template: {
+            page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+            currentPage: `<strong class="tui-page-btn tui-is-selected">{{page}}</strong>`,
+            moveButton:
+              '<a href="#" class="tui-page-btn tui-{{type}}">' +
+              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+              '</a>',
+            disabledMoveButton:
+              '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+              '</span>',
+            moreButton:
+              '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+              '<span class="tui-ico-ellip">...</span>' +
+              '</a>',
+          },
+        };
+        let windowWidth = document.documentElement.clientWidth;
+        if (windowWidth < 768) {
+          options.visiblePages = 5;
         }
-        cont.insertAdjacentHTML('beforeend', createCards(filmData));
+        const pagination = new Pagination(container, options, requestData);
 
-        if (filmData.total_pages > 1) {
-          const options = {
-            totalItems: filmData.total_results,
-            itemsPerPage: 20,
-            visiblePages: 9,
-            page: 1,
-            centerAlign: true,
-            firstItemClassName: 'tui-first-child',
-            lastItemClassName: 'tui-last-child',
-            template: {
-              page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-              currentPage: `<strong class="tui-page-btn tui-is-selected">{{page}}</strong>`,
-              moveButton:
-                '<a href="#" class="tui-page-btn tui-{{type}}">' +
-                '<span class="tui-ico-{{type}}">{{type}}</span>' +
-                '</a>',
-              disabledMoveButton:
-                '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-                '<span class="tui-ico-{{type}}">{{type}}</span>' +
-                '</span>',
-              moreButton:
-                '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-                '<span class="tui-ico-ellip">...</span>' +
-                '</a>',
-            },
-          };
-          let windowWidth = document.documentElement.clientWidth;
-          if (windowWidth < 768) {
-            options.visiblePages = 5;
-          }
-          const pagination = new Pagination(container, options, requestData);
+        pagination.on('afterMove', event => {
+          currentPage = event.page;
 
-          pagination.on('afterMove', event => {
-            currentPage = event.page;
+          getFilm.getSearchKeyword(requestData, currentPage).then(filmData => {
+            cont.innerHTML = '';
 
-            getFilm
-              .getSearchKeyword((eng = 'en-US'), requestData, currentPage)
-              .then(filmData => {
-                cont.innerHTML = '';
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
 
-                window.scrollTo({
-                  top: 0,
-                  behavior: 'smooth',
-                });
-
-                cont.insertAdjacentHTML('beforeend', createCards(filmData));
-              });
+            cont.insertAdjacentHTML('beforeend', createCards(filmData));
           });
-        }
-      });
+        });
+      }
+    });
     Loading.remove();
   } catch {
     Notify.warning('Oops! something went wrong');
