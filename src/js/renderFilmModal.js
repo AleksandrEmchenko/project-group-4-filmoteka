@@ -4,25 +4,6 @@ const API_KEY = '351363cde76d5d5ccd40418b50fed610';
 const modal = document.querySelector('[data-modal]');
 const modalWrap = document.querySelector('.modal__wrap');
 
-//перенесено в createCards
-//__________________________________________________
-// export function makeModal(event) {
-//   event.preventDefault()
-//   const movieId = event.getAttribute('id');
-//   fetchOneMovieInfo(movieId).then((data) => {
-    
-//     openModal(data);
-//     const modal = document.querySelector('[data-modal]');
-//     modal.addEventListener('click', onBackDropClick);
-//     document.addEventListener('keydown', onEscKeyPress);
-//     const closeBtn = modal.querySelector('.film_modal__close-btn');
-//     closeBtn.addEventListener('click', onCloseModal);
-//    updateQeueuButtonText(movieId); updateQeueuButtonText
-//     updateWatchedButtonText(movieId)
-//   });
-// }
-//______________________________________________________
-
 export async function fetchOneMovieInfo(movie_id) {
   const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}`;
   const response = await fetch(url);
