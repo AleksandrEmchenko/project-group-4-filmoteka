@@ -9,9 +9,11 @@
           class="search-input"
           placeholder="Movie search"
         />
-        <svg class="icon-search">
-          <use href="/src/images/icons.svg#icon-search"></use>
-        </svg>
+        <button type="submit" class="submit-button">
+          <svg class="icon-search">
+            <use href="/src/images/icons.svg#icon-search"></use>
+          </svg>
+        </button>
       </div>
       <div class="pages-btn">
         <a href="/src/index.html"
@@ -41,12 +43,16 @@
       <span class="filmoteka">Filmoteka</span>
     </a>
     <div class="add-btn">
-      <button type="button" class="page-button watched-button active js__watched-button">
+      <button
+        type="button"
+        class="page-button watched-button active js__watched-button"
+      >
         Watched
       </button>
 
-<button type="button" class="page-button queue-button js__queue-button">
+      <button type="button" class="page-button queue-button js__queue-button">
         Queue
       </button>
     </div>
-
+  </header>
+</div>
