@@ -122,6 +122,7 @@ async function renderCardsFromRequest(event) {
           },
         };
         let windowWidth = document.documentElement.clientWidth;
+
         if (windowWidth < 768) {
           options.visiblePages = 5;
         }
