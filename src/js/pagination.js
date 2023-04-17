@@ -21,56 +21,49 @@ if (searchFormEl !== null) {
 
 
 
-renderTrendCardsFilm();
 
-async function renderTrendCardsFilm() {
-  try {
-    await getFilm.getTrendingMovie().then(trendFilmData => {
-      if (trendFilmData.total_pages > 1) {
-        cont.innerHTML = '';
-        const options = {
-          totalItems: trendFilmData.total_results,
-          itemsPerPage: 20,
-          visiblePages: 9,
-          page: 1,
-          centerAlign: true,
-          firstItemClassName: 'tui-first-child',
-          lastItemClassName: 'tui-last-child',
-          template: {
-            page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-            currentPage: `<strong class="tui-page-btn tui-is-selected">{{page}}</strong>`,
-            moveButton:
-              '<a href="#" class="tui-page-btn tui-{{type}}">' +
-              '<span class="tui-ico-{{type}}">{{type}}</span>' +
-              '</a>',
-            moreButton:
-              '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-              '<span class="tui-ico-ellip">...</span>' +
-              '</a>',
-            disabledMoveButton:
-              '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-              '<span class="tui-ico-{{type}}">{{type}}</span>' +
-              '</span>',
-          },
-        };
-        let windowWidth = document.documentElement.clientWidth;
-        if (windowWidth < 768) {
-          options.visiblePages = 5;
-        }
+function renderTrendCardsFilm() {
+  getFilm.getTrendingMovie().then(trendFilmData => {
+    createCards(trendFilmData);
 
-        const pagination = new Pagination(container, options);
-        pagination.on('afterMove', event => {
-          let currentPage = event.page;
-          getFilm.getTrendingMovie(currentPage).then(filmData => {
-            cont.innerHTML = '';
+    if (trendFilmData.total_pages > 1) {
+      const options = {
+        totalItems: trendFilmData.total_results,
+        itemsPerPage: 20,
+        visiblePages: 10,
+        page: 1,
+        centerAlign: false,
+        firstItemClassName: 'tui-first-child',
+        lastItemClassName: 'tui-last-child',
+        template: {
+          page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+          currentPage: `<strong class="tui-page-btn tui-is-selected">{{page}}</strong>`,
+          moveButton:
+            '<a href="#" class="tui-page-btn tui-{{type}}">' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+            '</a>',
+          disabledMoveButton:
+            '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
+            '</span>',
+          moreButton:
+            '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+            '<span class="tui-ico-ellip">...</span>' +
+            '</a>',
+        },
+      };
 
-            cont.insertAdjacentHTML('afterbegin', createCards(filmData));
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            });
-            return;
-          });
+      const pagination = new Pagination(container, options);
+
+      pagination.on('afterMove', event => {
+        let currentPage = event.page;
+
+        getFilm.getTrendingMovie(currentPage).then(filmData => {
+          cont.innerHTML = '';
+
+          cont.insertAdjacentHTML('afterbegin', createCards(filmData));
+          return;
+
         });
 
       });
@@ -78,7 +71,7 @@ async function renderTrendCardsFilm() {
     if (cont !== null) {
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
     }
-    
+
   });
 
 }
