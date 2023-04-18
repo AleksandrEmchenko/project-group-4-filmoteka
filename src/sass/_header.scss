@@ -3,13 +3,10 @@
   max-width: 100%;
   height: 460px;
 
-  background: url(../images/header-mob.jpg);
+  background: url(../images/header-mob.webp);
 
   @include pixel-ratio-x2 {
-    background-image: url(../images/header-mob@2x.jpg);
-  }
-  @include pixel-ratio-x3 {
-    background-image: url(../images/header-mob@3x.jpg);
+    background-image: url(../images/header-mob@2x.webp);
   }
 
   border-radius: 10px;
@@ -25,13 +22,10 @@
 
     max-height: 222px;
 
-    background: url(../images/header-tab.jpg);
+    background: url(../images/header-tab.webp);
 
     @include pixel-ratio-x2 {
-      background-image: url(../images/header-tab@2x.jpg);
-    }
-    @include pixel-ratio-x3 {
-      background-image: url(../images/header-tab@3x.jpg);
+      background-image: url(../images/header-tab@2x.webp);
     }
 
     border-radius: 15px;
@@ -44,13 +38,10 @@
 
     max-height: 316px;
 
-    background: url(../images/header.jpg);
+    background: url(../images/header.webp);
 
     @include pixel-ratio-x2 {
-      background-image: url(../images/header@2x.jpg);
-    }
-    @include pixel-ratio-x3 {
-      background-image: url(../images/header@3x.jpg);
+      background-image: url(../images/header@2x.webp);
     }
 
     border-radius: 15px;
