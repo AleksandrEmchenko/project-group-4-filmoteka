@@ -4,8 +4,8 @@ import {
   onBackDropClick,
   onEscKeyPress,
   onCloseModal,
-  updateQeueuButtonText,
-  updateWatchedButtonText,
+  // updateQeueuButtonText,
+  // updateWatchedButtonText,
 
 } from './renderFilmModal';
 
