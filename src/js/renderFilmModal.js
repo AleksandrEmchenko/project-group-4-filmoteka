@@ -24,28 +24,35 @@ export function renderMovieCard(data) {
     data;
   const genresFormatted = genres.map((genre) => genre.name).join(', ');
   const movieCardMarkup = `
-  
-    <img class="film_modal-img" src="${`https://www.themoviedb.org/t/p/w500${poster_path}`}" alt="${title}">
+   <img class="film_modal-img" src="${`https://www.themoviedb.org/t/p/w500${poster_path}`}" alt="${title}">
     <div class="film_modal-about">
       <h1 class="film_modal-title">${title}</h1>
       <div class="film_modal-info">
-        <div class="film_modal__info-header">
-          <p class="info-header">Vote<span>/</span>Votes</p>
-          <p class="info-header">Popularity</p>
-          <p class="info-header ">Original Title</p>
-          <p class="info-header">Genre</p>
-        </div>
-        <div class="film_modal__info-value">
-          <p class="info-value">
+      <p class="info-header">Vote<span>/</span>Votes</p>
+      <p class="info-value">
             <span class="info-value__text avarange_vote">${vote_average.toFixed(2)}</span>
             <span>/</span>
             <span class="info-value__text">${vote_count}</span>
           </p>
-          <p class="info-value">${popularity}</p>
-          <p class="info-value original-title">${original_title}</p>
-          <p class="info-value">${genresFormatted}</p>
-        </div>
       </div>
+          
+          <div class="film_modal-info">
+          <p class="info-header">Popularity</p>
+          <p class="info-value">${popularity}</p>
+          </div>
+          
+          <div class="film_modal-info">
+          <p class="info-header">Original Title</p>
+          <p class="info-value original-title">${original_title}</p>
+          </div>
+          
+          <div class="film_modal-info">
+          <p class="info-header">Genre</p>
+          <p class="info-value">${genresFormatted}</p>
+          </div>
+          
+        
+      
       <h2 class="film_modal-desc">ABOUT</h2>
       <p class="film_modal__desc-text">${overview}</p>
       <ul class="film_btn-list">
@@ -159,10 +166,6 @@ export function onEscKeyPress(event) {
 export function updateQeueuButtonText(id) {
   const addToQueueBtn = document.querySelector('.add-to-queue');
   const localstorage = localStorage.getItem('QUEUE');
-  if (localstorage === null) {
-    addToQueueBtn.textContent = 'Add to queue';
-    return;
-  }
   if (JSON.parse(localstorage.includes(id))) {
     addToQueueBtn.textContent = 'Remove from queue';
   } else {
@@ -174,10 +177,6 @@ export function updateWatchedButtonText(id) {
   const addToWatchedBtn = document.querySelector('.add-to-watched');
   const localstorageWatched = localStorage.getItem('WATCHED');
 
-  if (localstorageWatched === null) {
-    addToWatchedBtn.textContent = 'Add to watched';
-    return;
-  }
   if (JSON.parse(localstorageWatched.includes(id))) {
     addToWatchedBtn.textContent = 'Remove from watched';
   } else {
