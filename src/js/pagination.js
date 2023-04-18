@@ -60,15 +60,17 @@ async function renderTrendCardsFilm() {
 
         pagination.on('afterMove', event => {
           let currentPage = event.page;
+          
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          });
 
           getFilm.getTrendingMovie(currentPage).then(filmData => {
             cont.innerHTML = '';
 
             cont.insertAdjacentHTML('afterbegin', createCards(filmData));
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            });
+
             chengePaginationBtnStyle();
 
             return;
