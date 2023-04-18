@@ -49,7 +49,7 @@
   
   body.body-theme {
     .tui-page-btn {
-      color: red;
+      color: var(--inverseMainColor);
         background-color: #191615;
         border: 0px;
     }
