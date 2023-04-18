@@ -8,6 +8,7 @@ const getFilm = new filmApiService();
 
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { reduce } from 'lodash';
 
 const container = document.getElementById('tui-pagination-container');
 const cont = document.querySelector('.gallery-list');
@@ -21,54 +22,63 @@ if (searchFormEl !== null) {
 
 
 
+async function renderTrendCardsFilm() {
+  try {
+    await getFilm.getTrendingMovie().then(trendFilmData => {
+      if (trendFilmData.total_pages > 1) {
+        cont.innerHTML = '';
+        const options = {
+          totalItems: trendFilmData.total_results,
+          itemsPerPage: 20,
+          visiblePages: 9,
+          page: 1,
+          centerAlign: true,
 
-function renderTrendCardsFilm() {
-  getFilm.getTrendingMovie().then(trendFilmData => {
-    createCards(trendFilmData);
+          template: {
+            page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+            currentPage: `<strong class="tui-page-btn tui-is-selected">{{page}}</strong>`,
+            moveButton:
+              '<a href="#" class="tui-page-btn tui-{{type}}">' +
+              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+              '</a>',
+            moreButton:
+              '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+              '<span class="tui-ico-ellip">...</span>' +
+              '</a>',
+            disabledMoveButton:
+              '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+              '</span>',
+          },
+        };
+        let windowWidth = document.documentElement.clientWidth;
+        if (windowWidth < 768) {
+          options.visiblePages = 4;
+        }
 
-    if (trendFilmData.total_pages > 1) {
-      const options = {
-        totalItems: trendFilmData.total_results,
-        itemsPerPage: 20,
-        visiblePages: 10,
-        page: 1,
-        centerAlign: false,
-        firstItemClassName: 'tui-first-child',
-        lastItemClassName: 'tui-last-child',
-        template: {
-          page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-          currentPage: `<strong class="tui-page-btn tui-is-selected">{{page}}</strong>`,
-          moveButton:
-            '<a href="#" class="tui-page-btn tui-{{type}}">' +
-            '<span class="tui-ico-{{type}}">{{type}}</span>' +
-            '</a>',
-          disabledMoveButton:
-            '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-            '<span class="tui-ico-{{type}}">{{type}}</span>' +
-            '</span>',
-          moreButton:
-            '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-            '<span class="tui-ico-ellip">...</span>' +
-            '</a>',
-        },
-      };
+        const pagination = new Pagination(container, options);
 
-      const pagination = new Pagination(container, options);
+        pagination.on('afterMove', event => {
+          let currentPage = event.page;
 
-      pagination.on('afterMove', event => {
-        let currentPage = event.page;
+          getFilm.getTrendingMovie(currentPage).then(filmData => {
+            cont.innerHTML = '';
 
-        getFilm.getTrendingMovie(currentPage).then(filmData => {
-          cont.innerHTML = '';
+            cont.insertAdjacentHTML('afterbegin', createCards(filmData));
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
+            chengePaginationBtnStyle();
 
-          cont.insertAdjacentHTML('afterbegin', createCards(filmData));
-          return;
-
+            return;
+          });
         });
+      }
+      Loading.remove();
 
-      });
-    }
-    if (cont !== null) {
+      chengePaginationBtnStyle();
+
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
     }
 
@@ -103,8 +113,6 @@ async function renderCardsFromRequest(event) {
           visiblePages: 9,
           page: 1,
           centerAlign: true,
-          firstItemClassName: 'tui-first-child',
-          lastItemClassName: 'tui-last-child',
           template: {
             page: '<a href="#" class="tui-page-btn">{{page}}</a>',
             currentPage: `<strong class="tui-page-btn tui-is-selected">{{page}}</strong>`,
@@ -113,7 +121,7 @@ async function renderCardsFromRequest(event) {
               '<span class="tui-ico-{{type}}">{{type}}</span>' +
               '</a>',
             disabledMoveButton:
-              '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+              '<span class="tui-page-btn  tui-is-disabled tui-{{type}}">' +
               '<span class="tui-ico-{{type}}">{{type}}</span>' +
               '</span>',
             moreButton:
@@ -125,7 +133,7 @@ async function renderCardsFromRequest(event) {
         let windowWidth = document.documentElement.clientWidth;
 
         if (windowWidth < 768) {
-          options.visiblePages = 5;
+          options.visiblePages = 4;
         }
         const pagination = new Pagination(container, options, requestData);
 
@@ -141,15 +149,52 @@ async function renderCardsFromRequest(event) {
               top: 0,
               behavior: 'smooth',
             });
-
+            chengePaginationBtnStyle();
             cont.insertAdjacentHTML('beforeend', createCards(filmData));
           });
         });
       }
     });
+    chengePaginationBtnStyle();
     Loading.remove();
   } catch {
     Notify.warning('Oops! something went wrong');
     Loading.remove();
   }
+}
+
+function chengePaginationBtnStyle() {
+  const firstItem = document.querySelector('.tui-page-btn');
+  // firstItem.classList.add('my-first-item-class');
+  firstItem.style.cssText =
+    'background-color: #F7F7F7; border-radius: 5px; font-weight:500;';
+
+  const lastItem = document.querySelector('.tui-last');
+  // lastItem.classList.add('my-first-item-class');
+  lastItem.style.cssText = 'background-color: #F7F7F7; border-radius: 5px; ';
+
+  const prevItem = document.querySelector('.tui-prev');
+  const prevItemDis = document.querySelector('.tui-page-btn');
+  // prevItem.classList.add('my-first-item-class');
+  prevItem.style.cssText = 'background-color: #F7F7F7; border-radius: 5px; ';
+  prevItemDis.style.cssText = 'background-color: #F7F7F7; border-radius: 5px;';
+
+  const nextItem = document.querySelector('.tui-next');
+  const nextItemDis = document.querySelector('.tui-page-btn');
+  nextItem.style.cssText = 'background-color: #F7F7F7; border-radius: 5px;';
+  nextItemDis.style.cssText = 'background-color: #F7F7F7; border-radius: 5px;';
+
+  const nextTenLeft = document.querySelector('.tui-first-child');
+  nextTenLeft.style.cssText = 'border-radius: 5px; ';
+
+  const nextTenRight = document.querySelector('.tui-last-child');
+  nextTenRight.style.cssText = 'border-radius: 5px;  ';
+
+  const selectedItems = document.querySelector('.tui-is-selected');
+  selectedItems.style.cssText =
+    'border-radius: 5px; background: #B92F2C; border-color: #B92F2C;';
+
+  const tuiThemMein = document.querySelector('.tui-pagination');
+  tuiThemMein.style.cssText =
+    'border-radius: 5px; border-width: 0px 0; font-weight:500;';
 }
