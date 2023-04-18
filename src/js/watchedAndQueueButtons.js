@@ -11,7 +11,8 @@ const libraryRefs = {
     watchedButton: document.querySelector('.js__watched-button'),
     queueButton: document.querySelector('.js__queue-button'),
     moviesCollection: document.querySelector('.js__movies-collection'),
-    loader: document.querySelector('.loading-spinner--hide')
+    loader: document.querySelector('.loading-spinner--hide'),
+  picture: document.querySelector('.library-picture')
 }
 
 
@@ -29,6 +30,7 @@ onAuthStateChanged(auth, (user) => {
 
         onRenderWatchedFilms()
 
+
         if (libraryRefs.watchedButton !== null) {
             libraryRefs.watchedButton.addEventListener('click', onRenderWatchedFilms)
         }
@@ -38,28 +40,33 @@ onAuthStateChanged(auth, (user) => {
 
         // RENDER MARKUP AND FETCH DATA FUNCTIONS
         async function onRenderWatchedFilms() {
+
             try {
                 loader.show()
                 const filmsList = await databaseAPI.getWatchedFilms()
-                for (film in filmsList) {
+                for (let film in filmsList) {
                     const filmData = getFilmData(filmsList[film])
                     console.log(filmData)
-                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData)) 
+                    libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))
                 }
-                
-                
+
+
                 loader.hide()
             } catch (error) {
                 loader.hide()
                 console.log(error)
             }
+          if (libraryRefs.moviesCollection.children.length === 0) {
+            libraryRefs.picture.classList.remove('visually-hidden')
+          }
         }
-        
+
         async function onRenderQueueFilms() {
+
             try {
                 loader.show()
                 const filmsList = await databaseAPI.getQueueFilms()
-                for (film in filmsList) {
+                for (let film in filmsList) {
                     const filmData = getFilmData(filmsList[film])
                     console.log(filmData)
                     libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))
@@ -69,6 +76,9 @@ onAuthStateChanged(auth, (user) => {
                 console.log(error)
                 loader.hide()
             }
+          if (libraryRefs.moviesCollection.children.length === 0) {
+            libraryRefs.picture.classList.remove('visually-hidden')
+          }
         }
 
     } else {
@@ -107,7 +117,7 @@ function createCards(data) {
 
 function getGenres(genres) {
     let genresArray = []
-    for (genre in genres) {
+    for (let genre in genres) {
         genresArray.push(genres[genre].name)
     }
     return genresArray.slice(0, 2)

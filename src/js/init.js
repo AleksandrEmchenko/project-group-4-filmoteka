@@ -5,13 +5,15 @@ import { Notify } from "notiflix";
 const filmApi = new filmApiService
 
 const gallery = document.querySelector('.gallery-list')
-filmApi.getTrendingMovie()
-.then(filmsData => {
-    const galleryFilms = createCards(filmsData)
-    gallery.innerHTML = galleryFilms
-})
-.catch(error => {
+if (gallery !== null) {
+  filmApi.getTrendingMovie()
+    .then(filmsData => {
+      const galleryFilms = createCards(filmsData)
+      gallery.innerHTML = galleryFilms
+    })
+    .catch(error => {
 
-    Notify.failure('No list of movies found')
+      Notify.failure('No list of movies found')
 
-})
+    })
+}

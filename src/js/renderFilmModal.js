@@ -36,24 +36,24 @@ export function renderMovieCard(data) {
             <span class="info-value__text">${vote_count}</span>
           </p>
       </div>
-          
+
           <div class="film_modal-info">
           <p class="info-header">Popularity</p>
           <p class="info-value">${popularity}</p>
           </div>
-          
+
           <div class="film_modal-info">
           <p class="info-header">Original Title</p>
           <p class="info-value original-title">${original_title}</p>
           </div>
-          
+
           <div class="film_modal-info">
           <p class="info-header">Genre</p>
           <p class="info-value">${genresFormatted}</p>
           </div>
-          
-        
-      
+
+
+
       <h2 class="film_modal-desc">ABOUT</h2>
       <p class="film_modal__desc-text">${overview}</p>
       <ul class="film_btn-list">
@@ -64,7 +64,7 @@ export function renderMovieCard(data) {
                 <button class="film_btn add-to-queue" type="button">Add to queue</button>
             </li>
         </ul>
-      
+
     </div>`;
 
   modalWrap.insertAdjacentHTML('beforeend', movieCardMarkup);
@@ -100,9 +100,9 @@ export function renderMovieCard(data) {
               return
           }
           addToQueueBtn.textContent = 'Add To Queue'
-          databaseAPI.deleteFilmFromQueue(data)
+          // databaseAPI.deleteFilmFromQueue(data)
         })
-  
+
         // ADD LISTENERS TO BUTTONS "ADD TO WATCHED", "ADD TO QUEUE" WITH ACTIONS "databaseAPI.addToWatched(film)" and "databaseAPI.addToQueue(film)"
         addToWatchedBtn.addEventListener('click', (event) => {
             databaseAPI.isIncludeInWathed(data.id).then((r) => {
@@ -114,7 +114,7 @@ export function renderMovieCard(data) {
               addToWatchedBtn.textContent = 'Add To Watched'
               databaseAPI.deleteFilmFromWatched(data)
           })
-          
+
         })
 
         addToQueueBtn.addEventListener('click', (event) => {
@@ -129,8 +129,8 @@ export function renderMovieCard(data) {
           })
         })
 
-        
-  
+
+
     } else {
         // IF USER SIGNED OUT
       addToQueueBtn.addEventListener('click', () => {
@@ -160,7 +160,7 @@ export function openModal(data) {
 
 export function onCloseModal() {
   modal.classList.add('is-hidden');
-  
+
   modal.removeEventListener('click', onBackDropClick);
   document.removeEventListener('keydown', onEscKeyPress);
   modalWrap.innerHTML = '';
@@ -169,7 +169,7 @@ export function onCloseModal() {
 export function onBackDropClick(event) {
   if (event.currentTarget === event.target) {
   modal.classList.add('is-hidden');
-  
+
   modal.removeEventListener('click', onBackDropClick);
     document.removeEventListener('keydown', onEscKeyPress);
     modalWrap.innerHTML = '';
@@ -181,11 +181,11 @@ export function onEscKeyPress(event) {
   if (event.code !== 'Escape') {
     return;
   }
-  
+
   modal.classList.add('is-hidden');
   modal.removeEventListener('click', onBackDropClick);
   document.removeEventListener('keydown', onEscKeyPress);
-  modalWrap.innerHTML = '';  
+  modalWrap.innerHTML = '';
 }
 
 
