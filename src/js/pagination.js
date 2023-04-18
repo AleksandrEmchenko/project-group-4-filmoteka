@@ -83,7 +83,7 @@ async function renderTrendCardsFilm() {
       // }
     });
   } catch {
-    Notify.warning('Oops! something went wrong');
+    // Notify.warning('Oops! something went wrong');
     Loading.remove();
   }
 }

@@ -1,14 +1,14 @@
 .body-theme {
     background-color: #191615;
   }
-  
+
   .switch-for {
       cursor: pointer;
       font-size: 16px;
       line-height: 25px;
       position: relative;
   }
-  
+
   .switch-for::after{
       content: "";
       width: 50px;
@@ -20,7 +20,7 @@
       top: -4px;
       right: -62px;
   }
-  
+
   .switch-for::before {
       content: "";
       width: 21px;
@@ -31,22 +31,22 @@
       right: -35px;
       top: -2px;
       z-index: 1;
-  
+
       transition-duration: 300ms;
   }
-  
+
   .switch {
       display: none;
   }
-  
+
   .switch:checked + .switch-for::before {
       right: -58px;
   }
-  
+
   .switch:checked ~ .block{
       background-color: aqua;
   }
-  
+
   body.body-theme {
     .tui-page-btn {
       color: var(--inverseMainColor);
@@ -58,18 +58,21 @@
         border-radius: 50%;
     }
   }
-  
-  
+
+
   body.body-theme {
+    .film__card__title {
+      color: #FFFFFF;
+    }
     .footer {
       background-color: #545454;
     }
-      
+
       .container
       .team-link {
       color: #f7f7f7;
     }
-  
+
     .footer {
       color: #f7f7f7;
       &:hover,
@@ -77,7 +80,7 @@
         color: #ff6b08;
       }
     }
-      
+
       .film__card__link > h2 {
           color: #f7f7f7;
       }

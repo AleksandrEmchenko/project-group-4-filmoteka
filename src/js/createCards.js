@@ -47,8 +47,8 @@ document.addEventListener('click', function (event) {
       document.addEventListener('keydown', onEscKeyPress);
       const closeBtn = modal.querySelector('.film_modal__close-btn');
       closeBtn.addEventListener('click', onCloseModal);
-      updateQeueuButtonText(movieId);
-      updateWatchedButtonText(movieId);
+      // updateQeueuButtonText(movieId);
+      // updateWatchedButtonText(movieId);
     });
   }
 });
