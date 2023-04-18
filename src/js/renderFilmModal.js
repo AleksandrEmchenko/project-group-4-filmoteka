@@ -85,6 +85,23 @@ export function renderMovieCard(data) {
         const uid = user.uid;
         const databaseAPI = new RealtimeDataBaseAPI(uid)
         console.log(databaseAPI)
+
+        databaseAPI.isIncludeInWathed(data.id).then((r) => {
+          if (r !== false) {
+              addToWatchedBtn.textContent = 'Remove From Watched'
+              return
+          }
+          addToWatchedBtn.textContent = 'Add To Watched'
+        })
+
+        databaseAPI.isIncludeInQueue(data.id).then((r) => {
+          if (r !== false) {
+              addToQueueBtn.textContent = 'Remove From Queue'
+              return
+          }
+          addToQueueBtn.textContent = 'Add To Queue'
+          databaseAPI.deleteFilmFromQueue(data)
+        })
   
         // ADD LISTENERS TO BUTTONS "ADD TO WATCHED", "ADD TO QUEUE" WITH ACTIONS "databaseAPI.addToWatched(film)" and "databaseAPI.addToQueue(film)"
         addToWatchedBtn.addEventListener('click', (event) => {
