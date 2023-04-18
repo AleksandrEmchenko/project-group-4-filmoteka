@@ -159,6 +159,7 @@ export function openModal(data) {
 }
 
 export function onCloseModal() {
+  location.reload();
   modal.classList.add('is-hidden');
 
   modal.removeEventListener('click', onBackDropClick);
@@ -168,6 +169,7 @@ export function onCloseModal() {
 
 export function onBackDropClick(event) {
   if (event.currentTarget === event.target) {
+    location.reload();
   modal.classList.add('is-hidden');
 
   modal.removeEventListener('click', onBackDropClick);
@@ -186,6 +188,7 @@ export function onEscKeyPress(event) {
   modal.removeEventListener('click', onBackDropClick);
   document.removeEventListener('keydown', onEscKeyPress);
   modalWrap.innerHTML = '';
+  location.reload();
 }
 
 
