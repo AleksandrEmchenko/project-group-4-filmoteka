@@ -143,12 +143,13 @@ async function renderCardsFromRequest(event) {
               top: 0,
               behavior: 'smooth',
             });
-
+            chengePaginationBtnStyle();
             cont.insertAdjacentHTML('beforeend', createCards(filmData));
           });
         });
       }
     });
+    chengePaginationBtnStyle();
     Loading.remove();
   } catch {
     Notify.warning('Oops! something went wrong');
