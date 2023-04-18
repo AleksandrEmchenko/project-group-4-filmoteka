@@ -21,7 +21,6 @@ if (searchFormEl !== null) {
 }
 
 
-
 async function renderTrendCardsFilm() {
   try {
     await getFilm.getTrendingMovie().then(trendFilmData => {
@@ -60,17 +59,15 @@ async function renderTrendCardsFilm() {
 
         pagination.on('afterMove', event => {
           let currentPage = event.page;
-          
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-          });
 
           getFilm.getTrendingMovie(currentPage).then(filmData => {
             cont.innerHTML = '';
 
             cont.insertAdjacentHTML('afterbegin', createCards(filmData));
-
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
             chengePaginationBtnStyle();
 
             return;
@@ -80,6 +77,8 @@ async function renderTrendCardsFilm() {
       Loading.remove();
 
       chengePaginationBtnStyle();
+
+    if (cont !== null) {
 
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
     }
