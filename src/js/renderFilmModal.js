@@ -2,6 +2,7 @@ import { setToLocalStorage } from './localStorage';
 import { RealtimeDataBaseAPI } from './firebaseDatabaseAPI';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from './firebaseInit';
+import { Notify } from 'notiflix';
 
 const auth = getAuth(app);
 
@@ -103,7 +104,7 @@ export function renderMovieCard(data) {
             databaseAPI.isIncludeInQueue(data.id).then((r) => {
               if (r === false) {
                   databaseAPI.addToQueue(data)
-                  addToWatchedBtn.textContent = 'Remove From Queue'
+                  addToQueueBtn.textContent = 'Remove From Queue'
                   return
               }
               addToQueueBtn.textContent = 'Add To Queue'
@@ -115,16 +116,24 @@ export function renderMovieCard(data) {
   
     } else {
         // IF USER SIGNED OUT
+      addToQueueBtn.addEventListener('click', () => {
+        Notify.warning('Sign in to add to your queue')
+      })
+
+      addToWatchedBtn.addEventListener('click', () => {
+        Notify.warning('Sign in to add to your watched')
+      })
+
     }
   })
-  addToWatchedBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
-  addToQueueBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
-  addToQueueBtn.addEventListener('click', function() {
-      updateQeueuButtonText(data.id);
-    });
-  addToWatchedBtn.addEventListener('click', function () {
-    updateWatchedButtonText(data.id)
-})
+//   addToWatchedBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
+//   addToQueueBtn.addEventListener('click', (event) => setToLocalStorage(event, data));
+//   addToQueueBtn.addEventListener('click', function() {
+//       updateQeueuButtonText(data.id);
+//     });
+//   addToWatchedBtn.addEventListener('click', function () {
+//     updateWatchedButtonText(data.id)
+// })
 }
 
 export function openModal(data) {
@@ -163,26 +172,26 @@ export function onEscKeyPress(event) {
 }
 
 
-export function updateQeueuButtonText(id) {
-  const addToQueueBtn = document.querySelector('.add-to-queue');
-  const localstorage = localStorage.getItem('QUEUE');
-  if (JSON.parse(localstorage.includes(id))) {
-    addToQueueBtn.textContent = 'Remove from queue';
-  } else {
-    addToQueueBtn.textContent = 'Add to queue';
-  }
-}
+// export function updateQeueuButtonText(id) {
+//   const addToQueueBtn = document.querySelector('.add-to-queue');
+//   const localstorage = localStorage.getItem('QUEUE');
+//   if (JSON.parse(localstorage.includes(id))) {
+//     addToQueueBtn.textContent = 'Remove from queue';
+//   } else {
+//     addToQueueBtn.textContent = 'Add to queue';
+//   }
+// }
 
-export function updateWatchedButtonText(id) {
-  const addToWatchedBtn = document.querySelector('.add-to-watched');
-  const localstorageWatched = localStorage.getItem('WATCHED');
+// export function updateWatchedButtonText(id) {
+//   const addToWatchedBtn = document.querySelector('.add-to-watched');
+//   const localstorageWatched = localStorage.getItem('WATCHED');
 
-  if (JSON.parse(localstorageWatched.includes(id))) {
-    addToWatchedBtn.textContent = 'Remove from watched';
-  } else {
-    addToWatchedBtn.textContent = 'Add to watched';
-  }
-}
+//   if (JSON.parse(localstorageWatched.includes(id))) {
+//     addToWatchedBtn.textContent = 'Remove from watched';
+//   } else {
+//     addToWatchedBtn.textContent = 'Add to watched';
+//   }
+// }
 
 
 
