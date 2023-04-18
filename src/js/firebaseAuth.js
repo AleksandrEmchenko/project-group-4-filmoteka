@@ -29,46 +29,53 @@ const authRefs = {
 }
 
 // SIGN UP USER WITH FORM DATA
-refs.signUpForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const formData = new FormData(refs.signUpForm)
-
-    const userName = formData.get('userName')
-    const userEmail = formData.get('userEmail')
-    const userPassword = formData.get('userPassword')
-
-    createUserWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) => {
-        const user = userCredential.user;
-        Notify.success('New user successfully created');
-        refs.modalWindow.classList.replace('auth__backdrop', 'auth__backdrop--hidden')
-        location.reload(true)
-    }).catch((error) => {
-        Notify.warning("Fill out the form with correct data");
+if (refs.signUpForm !== null) {
+    refs.signUpForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const formData = new FormData(refs.signUpForm)
+    
+        const userName = formData.get('userName')
+        const userEmail = formData.get('userEmail')
+        const userPassword = formData.get('userPassword')
+    
+        createUserWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) => {
+            const user = userCredential.user;
+            Notify.success('New user successfully created');
+            refs.modalWindow.classList.replace('auth__backdrop', 'auth__backdrop--hidden')
+            location.reload(true)
+        }).catch((error) => {
+            Notify.warning("Fill out the form with correct data");
+        })
+    
+        refs.signInForm.reset()
+        refs.signUpForm.reset()
     })
+}
 
-    refs.signInForm.reset()
-    refs.signUpForm.reset()
-})
+
 
 // SIGN IN USER WITH FORM DATA
-refs.signInForm.addEventListener('submit', e => {
-    e.preventDefault()
-    const formData = new FormData(refs.signInForm)
-
-    const userEmail = formData.get('userEmail')
-    const userPassword = formData.get('userPassword')
-
-    signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) => {
-        const user = userCredential.user;
-        Notify.success('User successfully sign in');
-        location.reload(true)
-    }).catch((error) => {
-        Notify.failure("User isn't exist");
+if (refs.signInForm !== null) {
+    refs.signInForm.addEventListener('submit', e => {
+        e.preventDefault()
+        const formData = new FormData(refs.signInForm)
+    
+        const userEmail = formData.get('userEmail')
+        const userPassword = formData.get('userPassword')
+    
+        signInWithEmailAndPassword(auth, userEmail, userPassword).then((userCredential) => {
+            const user = userCredential.user;
+            Notify.success('User successfully sign in');
+            location.reload(true)
+        }).catch((error) => {
+            Notify.failure("User isn't exist");
+        })
+    
+        refs.signInForm.reset()
+        refs.signUpForm.reset()
     })
+}
 
-    refs.signInForm.reset()
-    refs.signUpForm.reset()
-})
 
 //USER AUTH LISTENER
 onAuthStateChanged(auth, (user) => {
@@ -76,18 +83,22 @@ onAuthStateChanged(auth, (user) => {
         // IF USER SIGNED IN
         const uid = user.uid;
         
-        pageRefs.openAuthModalButton.style.display = 'none'
+        if (pageRefs.openAuthModalButton !== null) {
+            pageRefs.openAuthModalButton.style.display = 'none'
+        }
+        
 
         // DISPLAY FOR SETTINGS LIST
         authRefs.authSettingsList.style.display = 'block'
         // --------------------------
 
-        console.log(uid)
+        // console.log(uid)
         // USER DELETE
         authRefs.deleteUserButton.addEventListener('click', (e) => {
             deleteUser(user).then(() => {
                 Notify.success('User successfully deleted');
                 location.reload(true)
+                location.href = "./../index.html";
             }).catch((error) => {
                 Notify.failure("Error");
                 console.log(error)
@@ -97,18 +108,30 @@ onAuthStateChanged(auth, (user) => {
         authRefs.signOutButton.addEventListener('click', () => {
             signOut(auth).then(() => {
                 Notify.success('Successfully sign uut');
-                pageRefs.openAuthModalButton.style.display = 'none'
-                pageRefs.openAuthModalButton.style.display = 'block'
+                if(pageRefs.openAuthModalButton !== null) {
+                    pageRefs.openAuthModalButton.style.display = 'none'
+                }
+                if (pageRefs.openAuthModalButton !== null) {
+                    pageRefs.openAuthModalButton.style.display = 'block'
+                }
                 location.reload(true)
+                location.href = "./../index.html";
             }).catch((error) => {
                 Notify.failure("Error");
+                console.log(error)
+                
             })
         })
+
     } else {
         // IF USER SIGNED OUT
-        pageRefs.libraryButton.style.display = 'none'
+        if(pageRefs.libraryButton !== null) {
+            pageRefs.libraryButton.style.display = 'none'
+        }
     }
 })
+
+
 
 
 

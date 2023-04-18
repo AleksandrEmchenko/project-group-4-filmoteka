@@ -73,11 +73,16 @@
     margin-bottom: 10px;
 
     background-image: url('./../images/mobile-auth-bg.jpg');
-
+    @include pixel-ratio-x2 {
+        background-image: url(../images/mobile-auth-bg@2x.jpg);
+      }
     @include tablet {
         width: 261px;
         height: 100%;
         background-image: url('./../images/auth-img.jpg');
+        @include pixel-ratio-x2 {
+            background-image: url(../images/auth-img@2x.jpg);
+          }
     }
 }
 
@@ -173,6 +178,10 @@
 .auth__form-input:focus + .auth__form-label {
     transform: translateY(-160%) translateX(-10px) scale(0.9);
     opacity: 0.5;
+}
+
+.auth__form-input::placeholder {
+    color: transparent;
 }
 
 .signin__modal {

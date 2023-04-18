@@ -1,8 +1,11 @@
-class loaderSpinner {
-  constructor(spinner, list) {
-    this.spinnerRef = spinner;
-    this.list = list;
-  }
+
+export class loaderSpinner {
+
+    constructor(spinner, list) {
+        this.spinnerRef = spinner
+        this.list = list
+    }
+
 
   hide() {
     this.spinnerRef.classList.replace(

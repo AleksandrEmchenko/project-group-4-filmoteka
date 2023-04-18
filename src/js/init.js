@@ -1,5 +1,7 @@
 import filmApiService from "./requests";
 import { createCards } from "./createCards";
+import { Notify } from "notiflix";
+
 const filmApi = new filmApiService
 
 const gallery = document.querySelector('.gallery-list')
@@ -9,5 +11,7 @@ filmApi.getTrendingMovie()
     gallery.innerHTML = galleryFilms
 })
 .catch(error => {
-    console.log(error)
+
+    Notify.failure('No list of movies found')
+
 })

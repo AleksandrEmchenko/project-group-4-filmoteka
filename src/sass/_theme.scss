@@ -1,0 +1,91 @@
+.body-theme {
+    background-color: #191615;
+  }
+  
+  .switch-for {
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 25px;
+      position: relative;
+  }
+  
+  .switch-for::after{
+      content: "";
+      width: 50px;
+      height: 25px;
+      background: var(--inverseMainColor);
+      border: 1px solid var(--mainColor);
+      border-radius: 15px;
+      position: absolute;
+      top: -4px;
+      right: -62px;
+  }
+  
+  .switch-for::before {
+      content: "";
+      width: 21px;
+      height: 21px;
+      background-color: var(--secondaryTextColor);
+      border-radius: 50%;
+      position: absolute;
+      right: -35px;
+      top: -2px;
+      z-index: 1;
+  
+      transition-duration: 300ms;
+  }
+  
+  .switch {
+      display: none;
+  }
+  
+  .switch:checked + .switch-for::before {
+      right: -58px;
+  }
+  
+  .switch:checked ~ .block{
+      background-color: aqua;
+  }
+  
+  body.body-theme {
+    .tui-page-btn {
+      color: red;
+        background-color: #191615;
+        border: 0px;
+    }
+    .tui-page-btn:hover{
+        background-color: #545454;
+        border-radius: 50%;
+    }
+  }
+  
+  
+  body.body-theme {
+    .footer {
+      background-color: #545454;
+    }
+      
+      .container
+      .team-link {
+      color: #f7f7f7;
+    }
+  
+    .footer {
+      color: #f7f7f7;
+      &:hover,
+      &:focus {
+        color: #ff6b08;
+      }
+    }
+      
+      .film__card__link > h2 {
+          color: #f7f7f7;
+      }
+  }
+
+.theme-checkbox{
+    position: absolute;
+    right: 70px;
+    bottom: 30px;
+
+}

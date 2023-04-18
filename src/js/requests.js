@@ -12,15 +12,12 @@ export default class filmApiService {
     return response.data;
   }
 
+
   async getSearchKeyword(
-    language,
     query,
-    page,
-    include_adult,
-    region,
-    year,
-    primary_release_year
+    page
   ) {
+
     try {
       const searchUrl = `${this.#BASE_URL}/search/movie?api_key=${
         this.#API_KEY
