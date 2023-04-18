@@ -102,7 +102,7 @@ async function renderCardsFromRequest(event) {
 
       if (filmData.total_results === 0) {
         Notify.warning('Enter a more specific query!');
-        container.innerHTML = '';
+        cont.innerHTML = '';
         return;
       }
       cont.insertAdjacentHTML('beforeend', createCards(filmData));
