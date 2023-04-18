@@ -92,6 +92,12 @@ async function renderTrendCardsFilm() {
 async function renderCardsFromRequest(event) {
   event.preventDefault();
   const requestData = inputEl.value;
+  
+    if (requestData === '') {
+    Notify.warning('Please enter your request');
+    return;
+  }
+  
   let currentPage = 1;
 
   try {
