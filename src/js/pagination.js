@@ -8,7 +8,7 @@ const getFilm = new filmApiService();
 
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import { reduce } from 'lodash';
+// import { reduce } from 'lodash';
 
 const container = document.getElementById('tui-pagination-container');
 const cont = document.querySelector('.gallery-list');
@@ -58,14 +58,14 @@ async function renderTrendCardsFilm() {
 
         pagination.on('afterMove', event => {
           let currentPage = event.page;
-          
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-          });
 
           getFilm.getTrendingMovie(currentPage).then(filmData => {
             cont.innerHTML = '';
+
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
 
             cont.insertAdjacentHTML('afterbegin', createCards(filmData));
 
@@ -82,7 +82,7 @@ async function renderTrendCardsFilm() {
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
     });
   } catch {
-    Notify.warning('Oops! something went wrong');
+    Notify.warning('Oops! something went wrong!');
   }
 }
 
