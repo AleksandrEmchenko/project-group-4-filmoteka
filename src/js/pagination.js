@@ -19,8 +19,7 @@ const inputEl = document.getElementById('search');
 if (searchFormEl !== null) {
   searchFormEl.addEventListener('submit', renderCardsFromRequest);
 }
-
-
+renderTrendCardsFilm();
 async function renderTrendCardsFilm() {
   try {
     await getFilm.getTrendingMovie().then(trendFilmData => {
@@ -78,15 +77,16 @@ async function renderTrendCardsFilm() {
 
       chengePaginationBtnStyle();
 
-    // if (cont !== null) {
+      // if (cont !== null) {
 
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
-    // }
-
-  });
-
+      // }
+    });
+  } catch {
+    Notify.warning('Oops! something went wrong');
+    Loading.remove();
+  }
 }
-
 /////////////////
 
 async function renderCardsFromRequest(event) {
@@ -97,12 +97,11 @@ async function renderCardsFromRequest(event) {
   try {
     Loading.dots();
     await getFilm.getSearchKeyword(requestData, currentPage).then(filmData => {
-
       cont.innerHTML = '';
 
       if (filmData.total_results === 0) {
         Notify.warning('Enter a more specific query!');
-        container.innerHTML = '';
+        cont.innerHTML = '';
         return;
       }
       cont.insertAdjacentHTML('beforeend', createCards(filmData));
@@ -141,17 +140,16 @@ async function renderCardsFromRequest(event) {
         pagination.on('afterMove', event => {
           let currentPage = event.page;
 
-
           getFilm.getSearchKeyword(requestData, currentPage).then(filmData => {
             cont.innerHTML = '';
 
+            chengePaginationBtnStyle();
+            cont.insertAdjacentHTML('beforeend', createCards(filmData));
 
             window.scrollTo({
               top: 0,
               behavior: 'smooth',
             });
-            chengePaginationBtnStyle();
-            cont.insertAdjacentHTML('beforeend', createCards(filmData));
           });
         });
       }
