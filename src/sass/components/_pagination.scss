@@ -1,0 +1,36 @@
+.my-first-item-class {
+  display: inline-block;
+  position: relative;
+  width: 28px;
+  padding: 8px 0 6px;
+  margin-left: 0;
+  color: rgb(0, 0, 0);
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 5px;
+  border: 0px solid rgb(255, 255, 255);
+  border-width: 01px 0;
+  background-color: aquamarine;
+  background: #ffffff;
+}
+
+.tui-chenge-stile-btn {
+  border: none;
+}
+
+.tui-pagination .tui-page-btn {
+  border-radius: 5px;
+}
+
+.tui-pagination .tui-is-selected {
+  border-radius: 5px;
+  background: #b92f2c;
+}
+
+.tui-pagination {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
