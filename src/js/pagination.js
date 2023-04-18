@@ -78,10 +78,10 @@ async function renderTrendCardsFilm() {
 
       chengePaginationBtnStyle();
 
-    if (cont !== null) {
+    // if (cont !== null) {
 
       cont.insertAdjacentHTML('afterbegin', createCards(trendFilmData));
-    }
+    // }
 
   });
 
