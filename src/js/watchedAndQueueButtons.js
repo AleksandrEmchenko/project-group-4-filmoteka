@@ -122,7 +122,7 @@ function createCards(data) {
     </div> 
     <div class='film__card__text-wrapper'>
           <h2 class='film__card__title'>${data.original_title}</h2>
-          <p class='film__card__text'>${getGenres(data.genre_ids)} | ${getYear(data.release_date)}</p>
+          <p class='film__card__text'>${getGenres(data.genres)} | ${getYear(data.release_date)}</p>
         </div>
   </a>
 </li>
@@ -134,7 +134,7 @@ function getGenres(genres) {
     for (let genre in genres) {
         genresArray.push(genres[genre].name)
     }
-    return genresArray.slice(0, 2)
+    return genresArray.slice(0, 2).join(', ')
 }
 
 // BUTTONS ACTIVE CHANGER
