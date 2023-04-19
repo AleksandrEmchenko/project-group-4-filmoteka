@@ -278,12 +278,10 @@
   justify-content: center;
   gap: 8px;
 
-  margin-top: 270px;
-  padding-bottom: 20px;
+  margin-top: 260px;
 
   @include tablet {
-    margin-top: 105px;
-    margin-bottom: 16px;
+    margin-top: 100px;
     padding-left: 16px;
   }
   @include desktop {
@@ -293,7 +291,6 @@
     gap: 16px;
 
     margin-top: 151px;
-    margin-bottom: 32px;
     padding-left: 32px;
   }
 }
