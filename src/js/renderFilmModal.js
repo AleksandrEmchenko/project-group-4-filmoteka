@@ -25,7 +25,8 @@ export function renderMovieCard(data) {
     data;
   const genresFormatted = genres.map((genre) => genre.name).join(', ');
   const movieCardMarkup = `
-   <img class="film_modal-img" src="${`https://www.themoviedb.org/t/p/w500${poster_path}`}" alt="${title}">
+      <img class="film_modal-img" src="${`https://www.themoviedb.org/t/p/w500${poster_path}`}" alt="${title}">
+    
     <div class="film_modal-about">
       <h1 class="film_modal-title">${title}</h1>
       <div class="film_modal-info">
@@ -36,35 +37,40 @@ export function renderMovieCard(data) {
             <span class="info-value__text">${vote_count}</span>
           </p>
       </div>
-
+          
           <div class="film_modal-info">
           <p class="info-header">Popularity</p>
           <p class="info-value">${popularity}</p>
           </div>
-
+          
           <div class="film_modal-info">
           <p class="info-header">Original Title</p>
           <p class="info-value original-title">${original_title}</p>
           </div>
-
+          
           <div class="film_modal-info">
           <p class="info-header">Genre</p>
           <p class="info-value">${genresFormatted}</p>
           </div>
 
-
-
+          <div class="film_modal-info">
+          <p class="info-header">Trailer</p>
+          <button class="info-value watch_trailer-btn">WATCH ON YOUTUBE</button>
+          </div>
+          
+        
+      
       <h2 class="film_modal-desc">ABOUT</h2>
       <p class="film_modal__desc-text">${overview}</p>
       <ul class="film_btn-list">
             <li class="film__btn-item">
-                <button class="film_btn added add-to-watched" type="button">Add to Watched</button>
+                <button class="film_btn added add-to-watched" type="button">Add to watched</button>
             </li>
             <li class="film__btn-item">
                 <button class="film_btn add-to-queue" type="button">Add to queue</button>
             </li>
         </ul>
-
+      
     </div>`;
 
   modalWrap.insertAdjacentHTML('beforeend', movieCardMarkup);
@@ -151,6 +157,36 @@ export function renderMovieCard(data) {
 //   addToWatchedBtn.addEventListener('click', function () {
 //     updateWatchedButtonText(data.id)
 // })
+  
+   async function fetchMovieVideos(movie_id) {
+    const url = `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${API_KEY}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data)
+    return { ...data };
+  }
+
+  function getTrailer(data) {
+    const videoKey = data.key;
+    const youtubeUrl = `https://www.youtube.com/watch?v=${videoKey}`;
+    window.open(youtubeUrl, '_blank');
+  }
+
+  const trailerBtn = modalWrap.querySelector('.watch_trailer-btn');
+  trailerBtn.addEventListener('click', async () => {
+    const videos = await fetchMovieVideos(data.id);
+    console.log(videos)
+    const trailerVideo = videos.results.find(video => video.type === "Trailer");
+    if (trailerVideo) {
+      const videoKey = trailerVideo.key;
+      console.log(videoKey)
+     const youtubeUrl = `https://www.youtube.com/watch?v=${videoKey}`;
+    window.open(youtubeUrl, '_blank');
+    } else {
+      console.log("No trailer found");
+    }
+  });
+
 }
 
 export function openModal(data) {
