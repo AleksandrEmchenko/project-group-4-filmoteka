@@ -5,7 +5,11 @@ let theme = localStorage.getItem("ui-theme");
 
 
 window.addEventListener("load", saveTheme);
-btnThemeHeader.addEventListener('click', onTheme);
+
+if (btnThemeHeader !== null) {
+	btnThemeHeader.addEventListener('click', onTheme);
+}
+
 
 function saveTheme() {
  if (theme === "dark") {

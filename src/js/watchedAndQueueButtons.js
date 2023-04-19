@@ -46,7 +46,6 @@ onAuthStateChanged(auth, (user) => {
                 const filmsList = await databaseAPI.getWatchedFilms()
                 for (let film in filmsList) {
                     const filmData = getFilmData(filmsList[film])
-                    console.log(filmData)
                     libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))
                 }
 
@@ -54,7 +53,7 @@ onAuthStateChanged(auth, (user) => {
                 loader.hide()
             } catch (error) {
                 loader.hide()
-                console.log(error)
+        
             }
           if (libraryRefs.moviesCollection.children.length === 0) {
             libraryRefs.moviesCollection.innerHTML = "<p class=\"oops-text\" " +
@@ -73,7 +72,6 @@ onAuthStateChanged(auth, (user) => {
                 const filmsList = await databaseAPI.getQueueFilms()
                 for (let film in filmsList) {
                     const filmData = getFilmData(filmsList[film])
-                    console.log(filmData)
                     libraryRefs.moviesCollection.insertAdjacentHTML('beforeend', createCards(filmData))
                 }
                 loader.hide()
