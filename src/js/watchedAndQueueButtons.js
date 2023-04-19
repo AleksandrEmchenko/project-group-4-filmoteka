@@ -106,23 +106,27 @@ function getFilmData(obj) {
 // ${getYear(release_date)}
 
 function createCards(data) {
-    return `
-    <li class='film__card' id='${data.id}'>
-              <a class='film__card__link'>
-              <div class='film__card__thumb'>
-                <img src='${getPosterPath(data.poster_path)}' alt='${data.title}' loading='lazy' />
-                <div class='film__card__text-wrapper'>
-                <h2 class='film__card__title'>${data.original_title}</h2>
-                <p class='film__card__text'>${getGenres(data.genres)} | ${getYear(data.release_date)}</p>
-                <div class='overlay'>
-                <p class='film__overlay__text'>${data.overview}</p>
-                <button class='film__overlay__btn' type='button' id='${data.id}'>Read more</button>
-                </div>
-                </div>
-                </div>
-              </a>
-          </li>
-    `
+    return `<li class='film__card' id='${data.id}'>
+  <a class='film__card__link'>
+    <div class='film__card__thumb'>
+      <img src='${getPosterPath(data.poster_path)}' alt='${data.title}' loading='lazy' />
+      <div class='overlay'>
+       
+        <div class='overlay__content'>
+          <p class='film__overlay__text'>${data.overview}</p>
+          <button class='film__overlay__btn' type='button' id='${data.id}'>Read more</button>
+        </div> 
+        
+      </div>
+     
+    </div> 
+    <div class='film__card__text-wrapper'>
+          <h2 class='film__card__title'>${data.original_title}</h2>
+          <p class='film__card__text'>${getGenres(data.genre_ids)} | ${getYear(data.release_date)}</p>
+        </div>
+  </a>
+</li>
+      `
 }
 
 function getGenres(genres) {
