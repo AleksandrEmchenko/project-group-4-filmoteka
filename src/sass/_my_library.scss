@@ -125,8 +125,8 @@
   margin-bottom: 16px;
 
   @include tablet {
-    margin-top: 102px;
-    margin-bottom: 16px;
+    margin-top: 100px;
+    margin-bottom: 0;
     padding-left: 16px;
   }
   @include desktop {
@@ -135,8 +135,7 @@
     align-items: center;
     gap: 16px;
 
-    margin-top: 148px;
-    margin-bottom: 32px;
+    margin-top: 151px;
     padding-left: 32px;
   }
 }
