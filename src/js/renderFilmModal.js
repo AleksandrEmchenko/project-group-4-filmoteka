@@ -162,7 +162,6 @@ export function renderMovieCard(data) {
     const url = `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data)
     return { ...data };
   }
 
@@ -175,16 +174,12 @@ export function renderMovieCard(data) {
   const trailerBtn = modalWrap.querySelector('.watch_trailer-btn');
   trailerBtn.addEventListener('click', async () => {
     const videos = await fetchMovieVideos(data.id);
-    console.log(videos)
     const trailerVideo = videos.results.find(video => video.type === "Trailer");
     if (trailerVideo) {
       const videoKey = trailerVideo.key;
-      console.log(videoKey)
      const youtubeUrl = `https://www.youtube.com/watch?v=${videoKey}`;
     window.open(youtubeUrl, '_blank');
-    } else {
-      console.log("No trailer found");
-    }
+    } 
   });
 
 }
