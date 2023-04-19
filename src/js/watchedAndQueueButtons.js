@@ -57,7 +57,12 @@ onAuthStateChanged(auth, (user) => {
                 console.log(error)
             }
           if (libraryRefs.moviesCollection.children.length === 0) {
-            libraryRefs.picture.classList.remove('visually-hidden')
+            libraryRefs.moviesCollection.innerHTML = "<p class=\"oops-text\" " +
+              "style=\"display: block; margin: 100px auto; font-family: 'Roboto';\n" +
+              "        font-style: normal;\n" +
+              "        font-weight: 500;\n" +
+              "        font-size: 30px;\n" +
+              "        line-height: 1.16; color: #B92F2C;\">Oops... There are no movies in your library 😞</p>";
           }
         }
 
@@ -77,7 +82,13 @@ onAuthStateChanged(auth, (user) => {
                 loader.hide()
             }
           if (libraryRefs.moviesCollection.children.length === 0) {
-            libraryRefs.picture.classList.remove('visually-hidden')
+            libraryRefs.moviesCollection.innerHTML = "<p class=\"oops-text\" " +
+              "style=\"display: block; margin: 100px auto;" +
+              " font-family: 'Roboto';\n" +
+              "        font-style: normal;\n" +
+              "        font-weight: 500;\n" +
+              "        font-size: 30px;\n" +
+              "        line-height: 1.16; color: #B92F2C;\">Oops... There are no movies in your library 😞</p>";
           }
         }
 
