@@ -27,7 +27,23 @@
 
 .tui-pagination .tui-is-selected {
   border-radius: 5px;
-  background: #b92f2c;
+  background: #b92f2c !important;
+}
+
+.tui-pagination .tui-first-child.tui-is-selected {
+  border-left: #b92f2c !important;
+}
+
+.tui-pagination .tui-last-child.tui-is-selected {
+  border-right: #b92f2c !important;
+}
+
+.tui-pagination .tui-is-selected,
+.tui-pagination strong {
+  color: #fff;
+  background: #b92f2c !important;
+  border-color: #b92f2c !important;
+  cursor: default;
 }
 
 .tui-pagination {
