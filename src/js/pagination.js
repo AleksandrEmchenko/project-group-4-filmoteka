@@ -211,3 +211,17 @@ function chengePaginationBtnStyle() {
   tuiThemMein.style.cssText =
     'border-radius: 5px; border-width: 0px 0; font-weight:500;';
 }
+
+
+function renderErrorMsg() {
+  return ` <p
+      class="oops-text"
+      style="display: block; margin: 100px auto; font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 1.16; color: #B92F2C;"
+    >
+      Nothing was found for your request 😞
+    </p>`;
+}
