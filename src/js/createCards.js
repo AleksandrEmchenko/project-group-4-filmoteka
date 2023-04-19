@@ -15,22 +15,25 @@ export function createCards(data) {
     .map(
       ({ id, poster_path, title, original_title, release_date, genre_ids, overview }) => {
         return `<li class='film__card' id='${id}'>
-              <a class='film__card__link'>
-              <div class='film__card__thumb'>
-                <img src='${getPosterPath(
-          poster_path,
-        )}' alt='${title}' loading='lazy' />
-                <div class='film__card__text-wrapper'>
-                <h2 class='film__card__title'>${original_title}</h2>
-                <p class='film__card__text'>${getGenres(genre_ids)} | ${getYear(release_date)}</p>
-                <div class='overlay'>
-                <p class='film__overlay__text'>${overview}</p>
-                <button class='film__overlay__btn' type='button' id='${id}'>Read more</button>
-                </div>
-                </div>
-                </div>
-              </a>
-            </li>
+  <a class='film__card__link'>
+    <div class='film__card__thumb'>
+      <img src='${getPosterPath(poster_path)}' alt='${title}' loading='lazy' />
+      <div class='overlay'>
+       
+        <div class='overlay__content'>
+          <p class='film__overlay__text'>${overview}</p>
+          <button class='film__overlay__btn' type='button' id='${id}'>Read more</button>
+        </div> 
+        
+      </div>
+     
+    </div> 
+    <div class='film__card__text-wrapper'>
+          <h2 class='film__card__title'>${original_title}</h2>
+          <p class='film__card__text'>${getGenres(genre_ids)} | ${getYear(release_date)}</p>
+        </div>
+  </a>
+</li>
       `;
       },
     )
