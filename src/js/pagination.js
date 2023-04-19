@@ -23,10 +23,7 @@ renderTrendCardsFilm();
 async function renderTrendCardsFilm() {
   try {
     await getFilm.getTrendingMovie().then(trendFilmData => {
-       if (trendFilmData.total_results === 0) {
-        return;
-      }
-      if (trendFilmData.total_pages > 1) {
+       if (trendFilmData.total_pages > 1) {
         cont.innerHTML = '';
         const options = {
           totalItems: trendFilmData.total_results,
@@ -106,6 +103,14 @@ async function renderCardsFromRequest(event) {
   try {
     Loading.dots();
     await getFilm.getSearchKeyword(requestData, currentPage).then(filmData => {
+       if (filmData.total_results === 0) {
+        Notify.warning('Enter a more specific query!');
+        cont.innerHTML = '';
+        container.innerHTML = '';
+        cont.insertAdjacentHTML('beforeend', renderErrorMsg());
+        return;
+      }
+      
       cont.innerHTML = '';
 
       if (filmData.total_results === 0) {
